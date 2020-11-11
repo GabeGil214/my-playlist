@@ -1,0 +1,22 @@
+/*customizations to react-bootstrap styles*/
+
+body {
+  background: #121212!important;
+}
+
+.search-header {
+  text-align: center;
+  color: #fefefe;
+}
+
+.search-input.form-control {
+  border-radius: 30px;
+  font-size: 1.2rem;
+}
+
+footer {
+  text-align: center;
+  color: #fefefe;
+}
+
+@import "~bootstrap/scss/bootstrap";

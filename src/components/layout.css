@@ -7,9 +7,10 @@ html {
 }
 body {
   margin: 0;
+  background: #030303;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: hsla(0, 0%, 0%, 0.8);
+  color: rgba(245, 245, 245, 0.95);
   font-family: georgia, serif;
   font-weight: normal;
   word-wrap: break-word;
