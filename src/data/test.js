@@ -1,4 +1,4 @@
-const testData = {
+export const results = {
   city: "Berlin",
   artists: [
     "Daft Punk",
