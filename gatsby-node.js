@@ -66,6 +66,8 @@ exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {
     const node = {
       name: city.city,
       artist: city.artists,
+      genres: city.genres,
+      characteristics: city.characteristics,
       id: createNodeId(`City-${city.city}`),
       internal: {
         type: "City",

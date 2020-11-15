@@ -10,8 +10,15 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 
 
-function ResultsPage({location}) {
-  const results = location.state.results
+function ResultsPage(cityName) {
+  const { results } = useStaticQuery(graphql`
+    query MyQuery {
+    city(name: {eq: ${cityName}}) {
+      artist
+      characteristics
+      genres
+    }`
+  }
 
   return (
     <Layout>
