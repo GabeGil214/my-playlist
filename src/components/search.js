@@ -1,37 +1,39 @@
 import React from "react"
 import { Link } from "gatsby"
-import { graphql } from "gatsby"
 import 'bootstrap/dist/css/bootstrap.min.css'
+import { useStaticQuery, graphql } from "gatsby"
+
 
 import Button from "react-bootstrap/Button"
-import { results } from '../data/test'
 
 function Search() {
-  const { cityData } = useStaticQuery(
-    graphql`
+  const cityData = useStaticQuery(graphql`
       query {
-        site {
-          siteMetadata {
-            title
-            description
-            author
+        allCity {
+          edges {
+            node {
+              name
+            }
           }
         }
-      }
-    `
+      }`
   )
+
+  console.log(cityData)
+
+  // isValidCity(searchQuery){
+  //   //check if search term matches a city in database
+  //
+  //   if(cityData.includes(searchQuery ))
+  // }
 
 return (
 
   <div
-    style={{
-      margin: `0 auto`,
-      maxWidth: 960,
-      padding: `1.45rem 1.0875rem`,
-    }}
+    className="search-container"
     >
     <input className="form-control search-input" type="text" placeholder="City Name"/>
-    <Link to="/results" state={{results}} ><Button variant="success">Search</Button></Link>
+    <Link to="/results" ><Button variant="success">Search</Button></Link>
   </div>
 )
 

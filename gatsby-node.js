@@ -65,7 +65,7 @@ exports.sourceNodes = ({ actions, createNodeId, createContentDigest }) => {
   cityData.forEach(city => {
     const node = {
       name: city.city,
-      artist: city.artists,
+      artists: city.artists,
       genres: city.genres,
       characteristics: city.characteristics,
       id: createNodeId(`City-${city.city}`),
