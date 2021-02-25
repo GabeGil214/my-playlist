@@ -14,8 +14,8 @@ const IndexPage = () => (
     <Container>
       <Row className="justify-content-md-center" xs={12}>
         <Col xs={8}>
-          <h3 className="search-header">Find the Pulse of your city</h3>
-          <Search />
+          <h3 className="search-header">Create your Perfect Spotify Playlist</h3>
+          <Login />
         </Col>
       </Row>
     </Container>

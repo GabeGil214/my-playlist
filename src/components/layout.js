@@ -15,7 +15,7 @@ const Layout = ({ children }) => {
 
   return (
     <>
-      <Header siteTitle='CityPulse' />
+      <Header siteTitle='My Custom Playlist' />
       <div
         style={{
           margin: `0 auto`,

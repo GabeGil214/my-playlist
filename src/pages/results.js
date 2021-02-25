@@ -15,19 +15,8 @@ import SEO from "../components/seo"
 
 
 function ResultsPage(cityName) {
-  const results = useStaticQuery(graphql`
-    query MyQuery {
-      city(name: {eq: "Berlin"}) {
-        artists
-        characteristics
-        genres
-        name
-      }
-    }`
-  )
-
-  console.log(results)
-
+  const results = [];
+  
   return (
     <Layout>
     <SEO title="Results" />
