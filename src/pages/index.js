@@ -5,7 +5,7 @@ import Container from "react-bootstrap/Container"
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 import Layout from "../components/layout"
-import Search from "../components/search"
+import Login from "../components/Login"
 import SEO from "../components/seo"
 
 const IndexPage = () => (

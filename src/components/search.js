@@ -12,35 +12,7 @@ function Search() {
   let allCities = []
 
 
-  const cityData = useStaticQuery(graphql`
-      query {
-        allCity {
-          edges {
-            node {
-              name
-            }
-          }
-        }
-      }`
-  )
-
-  cityData.allCity.edges.map(function(city){
-    allCities.push(city.node.name)
-  })
-
-  console.log(cityData)
-  console.log(allCities)
-
   const isValidCity = function(searchQuery){
-    //check if search term matches a city in database
-    const index = allCities.indexOf(searchQuery.toLowerCase());
-    if(index === -1){
-      setAlertMessage("Sorry, we don't have any information on that city")
-    } else {
-      navigate('/results', {
-        state: allCities[index]
-      })
-    }
 
   }
 
