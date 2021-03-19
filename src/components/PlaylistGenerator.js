@@ -1,43 +1,37 @@
-import React, { useState, useEffect } from "react";
-import qs from 'qs';
+import React, { useState, useEffect, Fragment } from "react";
 import axios from 'axios';
 import UserProfile from './UserProfile';
+import CreatePlaylist from './CreatePlaylist';
+import SearchArtists from './SearchArtists';
+import Parameters from './Parameters';
 
-function PlaylistGenerator() {
-  const [token, setToken] = useState(window.location.search.substring(6))
-  const [accessToken, setAccessToken] = useState('')
 
-    useEffect(() => {
-      const data = {
-        grant_type: 'authorization_code',
-        code: token,
-        redirect_uri: 'http://localhost:8000/playlist'
+function PlaylistGenerator(props){
+  const [userData, setUserData] = useState({})
+  const { accessToken } = props;
+
+  useEffect(() => {
+    axios.get('https://api.spotify.com/v1/me', {
+      headers: {
+        'Authorization': 'Bearer ' + accessToken
       }
-
-      if(token){
-        axios.post(`https://accounts.spotify.com/api/token`, qs.stringify(data),
-        {
-          headers: {
-            'Content-Type' : 'application/x-www-form-urlencoded',
-            'Authorization' : 'Basic ' + btoa(process.env.CLIENT_ID + ':' + process.env.CLIENT_SECRET)
-          }
-        })
-          .then(response  => {
-            setAccessToken(response.data.access_token)
-          })
-          .catch(error => {
-            console.log(error.response)
-          })
-      }
-    },[])
-
+    })
+    .then(response => {
+      setUserData(response.data)
+    })
+    .catch(error => {
+      console.log(error.response)
+    })
+  }, [])
 
   return (
-    <div>
-      <UserProfile accessToken={accessToken} />
-      <p>This is where the app goes</p>
-    </div>
-  );
+    <Fragment>
+      <UserProfile userData={userData} />
+      <CreatePlaylist accessToken={accessToken} />
+      <SearchArtists accessToken={accessToken} />
+      <Parameters accessToken={accessToken} />
+    </Fragment>
+  )
 }
 
-export default PlaylistGenerator;
+export default PlaylistGenerator
