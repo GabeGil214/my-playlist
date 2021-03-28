@@ -24,6 +24,7 @@ function PlaylistContainer() {
         })
           .then(response  => {
             setAccessToken(response.data.access_token)
+            localStorage.setItem('token', response.data.access_token)
           })
           .catch(error => {
             console.log(error.response)

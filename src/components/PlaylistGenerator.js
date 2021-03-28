@@ -27,9 +27,14 @@ function PlaylistGenerator(props){
   return (
     <Fragment>
       <UserProfile userData={userData} />
-      <CreatePlaylist accessToken={accessToken} />
-      <SearchArtists accessToken={accessToken} />
-      <Parameters accessToken={accessToken} />
+      <CreatePlaylist 
+        accessToken={accessToken}
+        userData={userData}
+        />
+      <Parameters
+        accessToken={accessToken}
+        playlistID={playlistID}
+        />
     </Fragment>
   )
 }
