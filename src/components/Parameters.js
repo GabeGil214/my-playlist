@@ -12,12 +12,13 @@ function Parameters(props){
 
     axios.get(`https://api.spotify.com/v1/recommendations?limit=${playlistLength}&seed_artists=${selectedArtists}&target_danceability=${danceability}&target_acousticness=${acousticness}&target_energy=${energy}&target_speechiness=${speechiness}`)
       .then(response => {
-        axios.post(`https://api.spotify.com/v1/playlists/${props.playlistID}/tracks`)
+        const trackIDs = getTrackIDs(response.data)
+        <Redirect to="review" />
       })
   }
 
   const updateSelectedArtists = function(artist){
-    
+
   }
 
   return (
@@ -28,7 +29,7 @@ function Parameters(props){
         :
         <p>No artists selected</p>
       })}
-      <input type="search" value="Artist" placeholder="Search for artists" onChange={updateSelectedArtists(e.value)} />
+      <input type="search" value="Artist" placeholder="Search for artists" onChange={updateSelectedArtists(e.target.value)} />
     </div>
     <div>
       <h2>Step 3: Let us know the qualities you'd like your playlist to have</h2>
@@ -46,3 +47,8 @@ function Parameters(props){
 }
 
 export default Parameters
+
+function getTrackIDs(songList){
+
+  return trackIDs
+}
