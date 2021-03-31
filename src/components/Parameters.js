@@ -1,7 +1,9 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, useEffect, Fragment, useContext } from "react";
+import PlaylistContext from '../reducers/playlistReducer.js';
 import axios from 'axios';
 
 function Parameters(props){
+  const [ playlistState, playlistDispatch ] = useContext(PlaylistContext)
   const [ danceability, setDanceability ] = useState(0)
   const [ acousticness, setAcousticness ] = useState(0)
   const [ energy, setEnergy ] = useState(0)
@@ -14,6 +16,10 @@ function Parameters(props){
       .then(response => {
         const trackIDs = getTrackIDs(response.data)
         <Redirect to="review" />
+        playlistDispatch({
+          type: 'ADD_TRACK',
+          payload: response.data
+        })
       })
   }
 
