@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import qs from 'qs';
 import axios from 'axios';
 import UserProfile from './UserProfile';
+import PlaylistGenerator from './PlaylistGenerator';
 
 function PlaylistContainer() {
   const [token, setToken] = useState(window.location.search.substring(6))

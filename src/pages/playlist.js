@@ -5,7 +5,7 @@ import Container from "react-bootstrap/Container"
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 import Layout from "../components/layout"
-import PlaylistGenerator from "../components/PlaylistGenerator"
+import PlaylistContainer from "../components/PlaylistContainer"
 import SEO from "../components/seo"
 
 const PlaylistPage = () => (
@@ -15,7 +15,7 @@ const PlaylistPage = () => (
     <Container>
       <Row className="justify-content-md-center" xs={12}>
         <Col xs={8}>
-          <PlaylistGenerator />
+          <PlaylistContainer />
         </Col>
       </Row>
     </Container>
