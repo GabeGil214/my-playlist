@@ -4,6 +4,7 @@ export const PlaylistContext = createContext({})
 
 const initialPlaylistState = {
     trackIDs: [],
+    playlistID: 0
 };
 
 export const playlistReducer = (state, action) => {
