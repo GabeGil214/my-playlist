@@ -2,7 +2,6 @@ import React, { useState, useEffect, Fragment } from "react";
 import axios from 'axios';
 import UserProfile from './UserProfile';
 import CreatePlaylist from './CreatePlaylist';
-import SearchArtists from './SearchArtists';
 import Parameters from './Parameters';
 
 
@@ -27,16 +26,18 @@ function PlaylistGenerator(props){
   return (
     <Fragment>
       <UserProfile userData={userData} />
-      <CreatePlaylist 
+      <CreatePlaylist
         accessToken={accessToken}
         userData={userData}
-        />
-      <Parameters
-        accessToken={accessToken}
-        playlistID={playlistID}
         />
     </Fragment>
   )
 }
 
 export default PlaylistGenerator
+
+
+// <Parameters
+//   accessToken={accessToken}
+//   playlistID={playlistID}
+//   />

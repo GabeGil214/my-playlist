@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import qs from 'qs';
 import axios from 'axios';
 import UserProfile from './UserProfile';
 import PlaylistGenerator from './PlaylistGenerator';
 
 function PlaylistContainer() {
-  const [token, setToken] = useState(window.location.search.substring(6))
-  const [accessToken, setAccessToken] = useState('')
+  const [ accessToken, setAccessToken ] = useState(localStorage.getItem('token') ? localStorage.getItem('token') : '')
+  const token = window.location.search.substring(6)
 
     useEffect(() => {
       const data = {
@@ -15,7 +15,7 @@ function PlaylistContainer() {
         redirect_uri: 'http://localhost:8000/playlist'
       }
 
-      if(token){
+      if(!accessToken){
         axios.post(`https://accounts.spotify.com/api/token`, qs.stringify(data),
         {
           headers: {
@@ -37,7 +37,7 @@ function PlaylistContainer() {
   return (
     <div>
       {accessToken && (
-        <PlaylistGenerator accessToken={accessToken} />
+        <PlaylistGenerator accessToken={localStorage.getItem('token')} />
       )}
     </div>
   );
