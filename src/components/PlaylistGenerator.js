@@ -3,6 +3,7 @@ import axios from 'axios';
 import UserProfile from './UserProfile';
 import CreatePlaylist from './CreatePlaylist';
 import Parameters from './Parameters';
+import { PlaylistContextProvider } from '../reducers/playlistReducer.js'
 
 
 function PlaylistGenerator(props){
@@ -24,20 +25,19 @@ function PlaylistGenerator(props){
   }, [])
 
   return (
-    <Fragment>
-      <UserProfile userData={userData} />
-      <CreatePlaylist
-        accessToken={accessToken}
-        userData={userData}
-        />
-    </Fragment>
+    <PlaylistContextProvider>
+      <Fragment>
+        <UserProfile userData={userData} />
+        <CreatePlaylist
+          accessToken={accessToken}
+          userData={userData}
+          />
+        <Parameters
+          accessToken={accessToken}
+          />
+      </Fragment>
+    </PlaylistContextProvider>
   )
 }
 
 export default PlaylistGenerator
-
-
-// <Parameters
-//   accessToken={accessToken}
-//   playlistID={playlistID}
-//   />

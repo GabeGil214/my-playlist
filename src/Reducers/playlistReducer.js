@@ -1,14 +1,19 @@
 import React, { useReducer, createContext } from 'react';
 
-export const PlaylistContext = createContext({})
-
 const initialPlaylistState = {
     trackIDs: [],
-    playlistID: 0
+    playlistID: ''
 };
+
+export const PlaylistContext = createContext()
 
 export const playlistReducer = (state, action) => {
     switch (action.type) {
+        case 'CREATE_PLAYLIST':
+            return {
+              ...state,
+              playlistID: action.payload
+            }
         case 'ADD_TRACK':
             return {
                 trackIDs: [...state],

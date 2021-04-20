@@ -3,6 +3,7 @@ import qs from 'qs';
 import axios from 'axios';
 import UserProfile from './UserProfile';
 import PlaylistGenerator from './PlaylistGenerator';
+import { PlaylistContextProvider } from '../reducers/playlistReducer.js'
 
 function PlaylistContainer() {
   const [ accessToken, setAccessToken ] = useState(localStorage.getItem('token') ? localStorage.getItem('token') : '')
@@ -15,7 +16,6 @@ function PlaylistContainer() {
         redirect_uri: 'http://localhost:8000/playlist'
       }
 
-      if(!accessToken){
         axios.post(`https://accounts.spotify.com/api/token`, qs.stringify(data),
         {
           headers: {
@@ -30,16 +30,15 @@ function PlaylistContainer() {
           .catch(error => {
             console.log(error.response)
           })
-      }
     },[])
 
 
   return (
-    <div>
-      {accessToken && (
-        <PlaylistGenerator accessToken={localStorage.getItem('token')} />
-      )}
-    </div>
+      <div>
+        {accessToken && (
+          <PlaylistGenerator accessToken={accessToken} />
+        )}
+      </div>
   );
 }
 
