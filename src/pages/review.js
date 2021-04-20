@@ -5,21 +5,21 @@ import Container from "react-bootstrap/Container"
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 import Layout from "../components/layout"
-import PlaylistContainer from "../components/PlaylistContainer"
+import PlaylistPreview from "../components/PlaylistPreview"
 import SEO from "../components/seo"
 
-const PlaylistPage = () => (
+const ReviewPage = () => (
 
   <Layout>
-  <SEO title="Playlist Generator" />
+  <SEO title="Playlist Overview" />
     <Container>
       <Row className="justify-content-md-center" xs={12}>
         <Col xs={8}>
-          <PlaylistContainer />
+          <PlaylistPreview />
         </Col>
       </Row>
     </Container>
   </Layout>
 )
 
-export default PlaylistPage
+export default ReviewPage

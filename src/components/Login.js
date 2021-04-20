@@ -5,7 +5,7 @@ import Card from "react-bootstrap/card"
 import Button from "react-bootstrap/Button"
 
 function Login(){
-  const scopes = ["user-read-private", "user-read-email"]
+  const scopes = ["user-read-private", "user-read-email", "playlist-modify-public"]
   const redirectUri = "http://localhost:8000/playlist"
 
 
