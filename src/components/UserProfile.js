@@ -1,21 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import axios from 'axios';
+
 
 function UserProfile(props){
-  const { accessToken } = props
-
-  useEffect(() => {
-    axios.get('https://api.spotify.com/v1/me', {
-      headers: {
-        'Authorization': {accessToken}
-      }
-    })
-    .then(response => {
-      console.log(response)
-    })
-  })
 
   return (
-
+    <div>
+      <h2>Signed In As {props.userData.display_name}</h2>
+    </div>
   )
 }
 
