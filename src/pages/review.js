@@ -8,14 +8,14 @@ import Layout from "../components/layout"
 import PlaylistPreview from "../components/PlaylistPreview"
 import SEO from "../components/seo"
 
-const ReviewPage = () => (
+const ReviewPage = ({location}) => (
 
   <Layout>
   <SEO title="Playlist Overview" />
     <Container>
       <Row className="justify-content-md-center" xs={12}>
         <Col xs={8}>
-          <PlaylistPreview />
+          <PlaylistPreview playlistState={location.state.playlistState}/>
         </Col>
       </Row>
     </Container>

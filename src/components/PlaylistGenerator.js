@@ -1,13 +1,15 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, useEffect, useContext, Fragment } from "react";
+import SwipeableViews from 'react-swipeable-views';
 import axios from 'axios';
 import UserProfile from './UserProfile';
 import CreatePlaylist from './CreatePlaylist';
 import Parameters from './Parameters';
-import { PlaylistContextProvider } from '../reducers/playlistReducer.js'
-
+import PlaylistPreview from './PlaylistPreview';
+import { PlaylistContext } from '../reducers/playlistReducer.js';
 
 function PlaylistGenerator(props){
   const [userData, setUserData] = useState({})
+  const [ playlistState, playlistDispatch ] = useContext(PlaylistContext)
   const { accessToken } = props;
 
   useEffect(() => {
@@ -25,9 +27,11 @@ function PlaylistGenerator(props){
   }, [])
 
   return (
-    <PlaylistContextProvider>
-      <Fragment>
-        <UserProfile userData={userData} />
+    <Fragment>
+      <UserProfile userData={userData} />
+      <SwipeableViews
+        disabled={true}
+        index={playlistState.currentView}>
         <CreatePlaylist
           accessToken={accessToken}
           userData={userData}
@@ -35,8 +39,9 @@ function PlaylistGenerator(props){
         <Parameters
           accessToken={accessToken}
           />
-      </Fragment>
-    </PlaylistContextProvider>
+        <PlaylistPreview />
+      </SwipeableViews>
+    </Fragment>
   )
 }
 

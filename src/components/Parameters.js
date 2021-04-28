@@ -31,7 +31,6 @@ function Parameters(props){
 
   const getRecommendations = function(){
     const artistIDs = selectedArtists.map(artist => (artist.id))
-    console.log(artistIDs)
     axios.get(`https://api.spotify.com/v1/recommendations?limit=${playlistLength}&seed_artists=${artistIDs}&target_danceability=${danceability}&target_acousticness=${acousticness}&target_energy=${energy}&target_speechiness=${speechiness}`,
       {
         headers: {
@@ -39,13 +38,10 @@ function Parameters(props){
         }
       })
       .then(response => {
-        // const trackIDs = getTrackIDs(response.data)
-        // playlistDispatch({
-        //   type: 'ADD_TRACK',
-        //   payload: response.data
-        // })
-        console.log(response)
-        // navigate('/review/')
+        playlistDispatch({
+          type: 'POPULATE_TRACKLIST',
+          payload: response.data
+        })
       })
       .catch(error => {
         console.log(error)
