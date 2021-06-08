@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 export function getTrackIDs(trackList){
-  const trackIDs = trackList.map(track => (track.id))
+  const tracksToAdd = trackList.filter(track => track.selectedForPlaylist = true)
+  const trackIDs = tracksToAdd.map(track => (`spotify:track:${track.id}`))
 
   return trackIDs
 }

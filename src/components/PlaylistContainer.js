@@ -4,6 +4,7 @@ import axios from 'axios';
 import UserProfile from './UserProfile';
 import PlaylistGenerator from './PlaylistGenerator';
 import { PlaylistProvider } from '../reducers/playlistReducer.js'
+import { ParametersProvider } from '../reducers/parametersReducer.js'
 
 function PlaylistContainer() {
   const [ accessToken, setAccessToken ] = useState(localStorage.getItem('token') ? localStorage.getItem('token') : '')
@@ -34,13 +35,13 @@ function PlaylistContainer() {
 
 
   return (
-    <PlaylistProvider>
+    <ParametersProvider>
       <div>
         {accessToken.length && (
           <PlaylistGenerator accessToken={accessToken} />
         )}
       </div>
-    </PlaylistProvider>
+    </ParametersProvider>
   );
 }
 

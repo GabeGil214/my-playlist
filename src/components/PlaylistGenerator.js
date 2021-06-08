@@ -6,10 +6,12 @@ import CreatePlaylist from './CreatePlaylist';
 import Parameters from './Parameters';
 import PlaylistPreview from './PlaylistPreview';
 import { PlaylistContext } from '../reducers/playlistReducer.js';
+import PlaylistLength from './PlaylistLength';
+import SeedArtists from './SeedArtists';
 
 function PlaylistGenerator(props){
   const [userData, setUserData] = useState({})
-  const [ playlistState, playlistDispatch ] = useContext(PlaylistContext)
+  const [ playlistState, dispatch ] = useContext(PlaylistContext)
   const { accessToken } = props;
 
   useEffect(() => {
@@ -27,21 +29,18 @@ function PlaylistGenerator(props){
   }, [])
 
   return (
-    <Fragment>
-      <UserProfile userData={userData} />
-      <SwipeableViews
-        disabled={true}
-        index={playlistState.currentView}>
-        <CreatePlaylist
-          accessToken={accessToken}
-          userData={userData}
-          />
-        <Parameters
-          accessToken={accessToken}
-          />
-        <PlaylistPreview />
-      </SwipeableViews>
-    </Fragment>
+      <Fragment>
+        <UserProfile userData={userData} />
+        <SwipeableViews
+          disabled={true}
+          index={playlistState.currentView} >
+          <CreatePlaylist accessToken={accessToken} userData={userData} />
+          <SeedArtists accessToken={accessToken} />
+          <Parameters />
+          <PlaylistLength accessToken={accessToken} />
+          <PlaylistPreview />
+        </SwipeableViews >
+      </Fragment>
   )
 }
 

@@ -10,6 +10,7 @@ import PropTypes from "prop-types"
 
 import Header from "./header"
 import "./layout.css"
+import { PlaylistProvider } from '../reducers/playlistReducer.js'
 
 const Layout = ({ children }) => {
 
@@ -23,7 +24,9 @@ const Layout = ({ children }) => {
           padding: `0 1.0875rem 1.45rem`,
         }}
       >
+      <PlaylistProvider>
         <main>{children}</main>
+      </PlaylistProvider>
         <footer style={{
           marginTop: `2rem`
         }}>

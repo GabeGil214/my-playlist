@@ -11,7 +11,7 @@ import SEO from "../components/seo"
 const PlaylistPage = () => (
 
   <Layout>
-  <SEO title="Playlist Generator" />
+    <SEO title="Playlist Generator" />
     <Container>
       <Row className="justify-content-md-center" xs={12}>
         <Col xs={8}>

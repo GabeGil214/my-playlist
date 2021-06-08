@@ -1,9 +1,11 @@
 import React, { useReducer, createContext } from 'react';
 import axios from 'axios';
+import { navigate } from "gatsby"
 
 const initialPlaylistState = {
     trackList: [],
-    playlistID: '',
+    id: '',
+    name: '',
     currentView: 0,
 };
 
@@ -14,19 +16,20 @@ export const playlistReducer = (state, action) => {
         case 'CREATE_PLAYLIST':
             return {
               ...state,
-              playlistID: action.payload
+              id: action.payload.id,
+              name: action.payload.name
             }
         case 'POPULATE_TRACKLIST':
             return {
               ...state,
-              trackList: action.payload
+              trackList: action.payload.map(track => { return {...track, selectedForPlaylist: true}}),
             }
         case 'NEXT_STEP':
             return {
               ...state,
               currentView: action.payload
             }
-        case 'ADD_TRACK':
+        case 'ADD_TRACKS_TO_PLAYLIST':
             return {
                 trackIDs: [...state],
             };
@@ -40,17 +43,17 @@ export const playlistReducer = (state, action) => {
 };
 
 
-function PlaylistProvider({children}) {
+export const PlaylistProvider = props => {
   const [state, dispatch] = useReducer(playlistReducer, initialPlaylistState);
 
   return (
     <PlaylistContext.Provider value={[state, dispatch]}>
-      {children}
+      {props.children}
     </PlaylistContext.Provider>
   )
 }
 
-function usePlaylist() {
+export const usePlaylist = () => {
   const context = React.useContext(PlaylistContext)
   if (context === undefined) {
     throw new Error('usePlaylist must be used within a PlaylistProvider')
@@ -69,9 +72,10 @@ function createNewPlaylist(dispatch, playlistName, id, accessToken){
     }
   })
   .then(response => {
+    console.log(response)
     dispatch({
       type: 'CREATE_PLAYLIST',
-      payload: playlistName
+      payload: response.data
     })
 
     dispatch({
@@ -85,4 +89,31 @@ function createNewPlaylist(dispatch, playlistName, id, accessToken){
 
 }
 
-export {PlaylistProvider, usePlaylist, createNewPlaylist}
+function getRecommendations(parameters, accessToken, dispatch, numberOfTracks){
+  const { seedArtists, acousticness, danceability, energy, speechiness } = parameters;
+  const artistIDs = seedArtists.map(artist => (artist.id))
+
+  axios.get(`https://api.spotify.com/v1/recommendations?limit=${numberOfTracks}&seed_artists=${artistIDs}&target_danceability=${danceability}&target_acousticness=${acousticness}&target_energy=${energy}&target_speechiness=${speechiness}`,
+    {
+      headers: {
+      'Authorization': 'Bearer ' + accessToken
+      }
+    })
+    .then(response => {
+      console.log(response.data)
+      dispatch({
+        type: 'POPULATE_TRACKLIST',
+        payload: response.data.tracks,
+      })
+
+      dispatch({
+        type: 'NEXT_STEP',
+        payload: 4
+      })
+    })
+    .catch(error => {
+      console.log(error)
+    })
+}
+
+export {createNewPlaylist, getRecommendations}
