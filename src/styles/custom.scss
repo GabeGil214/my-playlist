@@ -1,12 +1,77 @@
 /*customizations to react-bootstrap styles*/
+@import "~bootstrap/scss/bootstrap";
+
+/*================
+Default Settings
+==================*/
+
+* {
+  font-size: 16px;
+}
+
+#gatsby-focus-wrapper {
+  overflow-x: hidden;
+}
 
 body {
   background: #121212!important;
 }
 
-.search-header {
-  text-align: center;
-  color: #fefefe;
+
+$primary-green: #5DBB60;
+$primary-black: #222;
+$button-padding: 0.25rem 2rem 0.5rem 2rem;
+$gutter-sm: 1rem;
+$gutter-md: 1.5rem;
+$font-lg: 1.4rem;
+$font-md: 1.2rem;
+$font-sm: 1rem;
+
+
+/*==================
+Header section
+===================*/
+
+.header {
+    background: $primary-green;
+    padding: 1.2rem;
+    text-align: center;
+    width: auto;
+    justify-content: center;
+    & h1 {
+      font-size: $font-lg;
+      font-weight: 700;
+      margin-bottom: 0;
+    }
+}
+
+
+/*==================
+Buttons/Typography
+===================*/
+
+.btn.btn-primary {
+  background: $primary-green;
+  border-color: $primary-green;
+  border-radius: 0;
+  padding: $button-padding;
+  & a {
+    color: $primary-black;
+    font-size: $font-sm;
+    font-weight: 700;
+  }
+}
+
+.login-header {
+    text-align: center;
+    color: #fefefe;
+    font-size: $font-md;
+    margin-bottom: $gutter-md;
+}
+
+.login-container {
+    margin-top: 15rem;
+    text-align: center;
 }
 
 .search-container {
@@ -32,43 +97,9 @@ body {
 footer {
   text-align: center;
   color: #fefefe;
-}
-
-/** Now Playing **/
-.now-playing__name {
-  font-size: 1.5em;
-  margin-bottom: 0.2em;
-}
-.now-playing__artist {
-  margin-bottom: 1em;
-}
-.now-playing__status {
-  margin-bottom: 1em;
-}
-.now-playing__img {
-  float: left;
-  margin-right: 10px;
-  text-align: right;
-  width: 45%;
-}
-.now-playing__img img {
-  max-width: 80vmin;
+  position: fixed;
+  bottom: 0;
+  left: 0;
   width: 100%;
+  margin: 1rem auto;
 }
-.now-playing__side {
-  margin-left: 5%;
-  width: 45%;
-}
-/** Progress **/
-.progress {
-  border: 1px solid #eee;
-  height: 6px;
-  border-radius: 3px;
-  overflow: hidden;
-}
-.progress__bar {
-  background-color: #eee;
-  height: 4px;
-}
-
-@import "~bootstrap/scss/bootstrap";
