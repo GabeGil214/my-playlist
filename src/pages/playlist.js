@@ -13,10 +13,8 @@ const PlaylistPage = () => (
   <Layout>
     <SEO title="Playlist Generator" />
     <Container>
-      <Row className="justify-content-md-center" xs={12}>
-        <Col xs={8}>
-          <PlaylistContainer />
-        </Col>
+      <Row className="justify-content-sm-center">
+        <PlaylistContainer />
       </Row>
     </Container>
   </Layout>

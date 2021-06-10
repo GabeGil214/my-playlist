@@ -36,11 +36,9 @@ function PlaylistContainer() {
 
   return (
     <ParametersProvider>
-      <div>
         {accessToken.length && (
           <PlaylistGenerator accessToken={accessToken} />
         )}
-      </div>
     </ParametersProvider>
   );
 }

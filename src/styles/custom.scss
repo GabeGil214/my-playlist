@@ -17,10 +17,16 @@ body {
   background: #121212!important;
 }
 
+p, h2, h3 {
+  color: #efefef;
+}
+
 
 $primary-green: #5DBB60;
+$dark-green: darken($primary-green, 20%);
 $primary-black: #222;
 $button-padding: 0.25rem 2rem 0.5rem 2rem;
+$input-padding: 0.275rem 1rem;
 $gutter-sm: 1rem;
 $gutter-md: 1.5rem;
 $font-lg: 1.4rem;
@@ -60,7 +66,16 @@ Buttons/Typography
     font-size: $font-sm;
     font-weight: 700;
   }
+  &:hover {
+    color: #fff;
+    background-color: $dark-green;
+    border-color: $dark-green;
+  }
 }
+
+/*====================
+Login Screen
+=====================*/
 
 .login-header {
     text-align: center;
@@ -73,6 +88,37 @@ Buttons/Typography
     margin-top: 15rem;
     text-align: center;
 }
+
+/*===================
+Playlist Pages
+====================*/
+
+.form-container {
+    margin: 10rem auto 0 auto;
+    text-align: center;
+}
+
+.form-container h3 {
+  font-size: $font-md;
+  margin-bottom: $gutter-md;
+}
+
+.form-container input {
+  padding: $input-padding;
+  min-width: 250px;
+  max-width: 400px;
+  width: 70%;
+  display: block;
+  margin: 0 auto $gutter-sm;
+  box-shadow: inset -2px -2px 4px rgb(0 0 0 / 25%), inset 3px 0 4px rgb(0 0 0 / 24%);
+  border: 1px solid #111;
+}
+
+/*====================
+User Profile
+=====================*/
+
+
 
 .search-container {
   margin: 0 auto;
@@ -93,6 +139,11 @@ Buttons/Typography
   font-size: 1.2rem;
   margin-bottom: 2rem;
 }
+
+
+/*=========================
+Footer
+==========================*/
 
 footer {
   text-align: center;

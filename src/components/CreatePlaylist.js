@@ -1,5 +1,7 @@
 import React, { useState, useContext } from "react";
 import { usePlaylist, createNewPlaylist } from '../reducers/playlistReducer.js';
+import Col from "react-bootstrap/Col"
+
 import axios from 'axios';
 
 function CreatePlaylist(props){
@@ -12,11 +14,11 @@ function CreatePlaylist(props){
   }
 
   return (
-    <div>
-      <h1>Step 1: Create Your New Playlist</h1>
-      <input type="text" name="Playlist Name" onChange={event => setPlaylistName(event.target.value)} />
+    <Col className="form-container" sm={12}>
+      <h3>Step 1: Name Your Playlist</h3>
+      <input type="text" name="Playlist Name" placeholder="Playlist Name" onChange={event => setPlaylistName(event.target.value)} />
       <button className="btn btn-primary" onClick={handleNewPlaylist}>Create Playlist</button>
-    </div>
+    </Col>
   )
 }
 

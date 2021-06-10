@@ -1,7 +1,7 @@
 import React from "react";
 
 function UserProfile(props){
-
+  console.log(props.userData)
   return (
     <div>
       <h2>Signed In As {props.userData.display_name}</h2>

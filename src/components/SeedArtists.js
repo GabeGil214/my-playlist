@@ -64,8 +64,8 @@ function SeedArtists(props){
   }
 
   return (
-    <div>
-      <h2>Step 2: Select Artists to Use as Basis For Your Playlist</h2>
+    <div className="form-container">
+      <h3>Step 2: Select Artists to Use as Basis For Your Playlist</h3>
       <ul>
         {selectedArtists.length ? selectedArtists.map(artist => (
           <li key={artist.id}>{artist.name}</li>
@@ -75,17 +75,19 @@ function SeedArtists(props){
         }
       </ul>
       <input type="search" placeholder="Search for artists" onChange={event => updateSearchResults(event.target.value)} />
-      <ul className="search-dropdown">
-        {queryResponse && ( queryResponse.map(artist => (
-          <li key={artist.id}>
-            {
-              artist.images[2] ? <img src={artist.images[2].url} alt={artist.name} onClick={() => updateArtistSelection(artist)} className="artist-img"/> :
-              <Img fluid={data.placeholderImage.childImageSharp.fluid} alt={artist.name} onClick={() => setSelectedArtists(selectedArtists.push(artist))} className="artist-img"/>
-            }
-            {artist.name}
-          </li>
-        )))}
-      </ul>
+      <div className="artists">
+        <ul className="search-dropdown">
+          {queryResponse && ( queryResponse.map(artist => (
+            <li key={artist.id}>
+              {
+                artist.images[2] ? <img src={artist.images[2].url} alt={artist.name} onClick={() => updateArtistSelection(artist)} className="artist-img"/> :
+                <Img fluid={data.placeholderImage.childImageSharp.fluid} alt={artist.name} onClick={() => setSelectedArtists(selectedArtists.push(artist))} className="artist-img"/>
+              }
+              {artist.name}
+            </li>
+          )))}
+        </ul>
+      </div>
       <button className="btn btn-primary" onClick={saveArtistSelection}>Next Step</button>
     </div>
   )

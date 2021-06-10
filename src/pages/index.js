@@ -13,7 +13,7 @@ const IndexPage = () => (
   <SEO title="Home" />
     <Container>
       <Row className="justify-content-md-center login-container" xs={12}>
-        <Col xs={12}>
+        <Col xs={12} md={8}>
           <h3 className="login-header">Login To Spotify To Get Started</h3>
           <Login />
         </Col>
