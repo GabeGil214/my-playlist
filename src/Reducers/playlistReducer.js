@@ -7,6 +7,7 @@ const initialPlaylistState = {
     id: '',
     name: '',
     currentView: 0,
+    userID: ''
 };
 
 export const PlaylistContext = createContext()
@@ -23,6 +24,11 @@ export const playlistReducer = (state, action) => {
             return {
               ...state,
               trackList: action.payload.map(track => { return {...track, selectedForPlaylist: true}}),
+            }
+        case 'SET_USER':
+            return {
+              ...state,
+              userID: action.payload,
             }
         case 'NEXT_STEP':
             return {
@@ -84,7 +90,7 @@ function createNewPlaylist(dispatch, playlistName, id, accessToken){
     })
   })
   .catch(error => {
-    console.log(error)
+    console.log(error.response)
   })
 
 }

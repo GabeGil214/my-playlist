@@ -7,10 +7,11 @@ import axios from 'axios';
 function CreatePlaylist(props){
   const [ playlistName, setPlaylistName ] = useState('');
   const [ state, dispatch ] = usePlaylist()
-  const { id } = props.userData
+  const { userID } = state
+  console.log(state)
 
   const handleNewPlaylist = function() {
-    createNewPlaylist(dispatch, playlistName, id, props.accessToken)
+    createNewPlaylist(dispatch, playlistName, userID, props.accessToken)
   }
 
   return (
