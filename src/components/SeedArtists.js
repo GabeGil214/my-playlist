@@ -66,7 +66,7 @@ function SeedArtists(props){
   return (
     <div className="form-container">
       <h3>Step 2: Select Artists to Use as Basis For Your Playlist</h3>
-      <ul>
+      <ul className="selected-artists">
         {selectedArtists.length ? selectedArtists.map(artist => (
           <li key={artist.id}>{artist.name}</li>
           ))

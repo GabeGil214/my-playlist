@@ -29,7 +29,7 @@ function Parameters(){
   }
 
   return (
-      <div>
+      <div className="form-container">
         <h2>Step 3: Let us know the qualities you'd like your playlist to have</h2>
         <p>Danceability:
           <input type="range" min="1" max="100" placeholder="Danceability Value" onChange={event => setDanceability(event.target.value)} />
