@@ -217,6 +217,51 @@ Select Artists Page
   color: #fefefe;
 }
 
+/*========================
+Playlst Preview
+=========================*/
+
+.song-info {
+    display: block;
+    padding-left: 2rem;
+    padding-top: 4rem;
+    text-align: left;
+    width: 100%;
+    & h4 {
+      color: $primary-green;
+    }
+}
+
+.album-cover {
+  width: 200px;
+}
+
+.active.song {
+  display: flex;
+  margin-top: 2rem;
+  text-align: left;
+}
+
+.button-holder {
+    display: flex;
+    height: 48px;
+    align-self: center;
+    & span {
+      color: #fefefe;
+      margin: 0 10px;
+      font-size: $font-lg;
+    }
+    & button {
+      background: none;
+      border: none;
+    }
+    & .remove {
+      color: red;
+    }
+    & .add {
+      color: $primary-green;
+    }
+}
 
 /*=========================
 Footer

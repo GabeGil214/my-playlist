@@ -1,4 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from 'react';
+import { FaPlus, FaMinus } from 'react-icons/fa';
 import axios from 'axios';
 import qs from 'qs';
 import { PlaylistContext } from '../reducers/playlistReducer.js';
@@ -8,13 +9,15 @@ function PlaylistPreview(props) {
   const [ playlistState, playlistDispatch ] = useContext(PlaylistContext);
   const [ trackList, setTrackList ] = useState(playlistState.trackList ? playlistState.trackList : [])
   const accessToken = localStorage.getItem('token');
+  console.log(trackList)
+  console.log(playlistState)
 
 
   useEffect(() => {
-    if(trackList === []){
+    if(trackList.length === 0){
       setTrackList(playlistState.trackList)
     }
-  },[])
+  },[playlistState])
 
   const addSongsToPlaylist = function(){
     const data = {
@@ -44,19 +47,21 @@ function PlaylistPreview(props) {
   }
 
   return (
-    <div className="playlist-preview">
-      <h1>Here are your recommendend songs:</h1>
+    <div className="form-container">
+      <h2>Here are your recommendend songs:</h2>
         {trackList.length > 0 && (
           trackList.map((track, index) => (
-            <div key={track.id} className={track.selectedForPlaylist ? 'active' : 'inactive'}>
-              <h2>{track.name}</h2>
-              <p>{track.artists[0].name}</p>
-              {
-                track.selectedForPlaylist ?
-                  <button className="remove" onClick={(index) => removeSong(index)}>-</button>
-                  :
-                  <button className="add" onClick={(index) => addSong(index)}>+</button>
-              }
+            <div key={track.id} className={`song ${track.selectedForPlaylist ? 'active' : 'inactive'}`}>
+              <img src={track.album.images[1].url} className="album-cover" alt={track.album.name} />
+              <div className="song-info">
+                <h4>{track.name}</h4>
+                <p>{track.artists[0].name}</p>
+              </div>
+              <div className="button-holder">
+                <button className={`add ${track.selectedForPlaylist ? 'inactive' : 'active '}`} onClick={(index) => addSong(index)}><FaPlus size={'2rem'} /></button>
+                  <span>|</span>
+                <button className={`remove ${track.selectedForPlaylist ? 'active' : 'inactive '}`} onClick={(index) => removeSong(index)}><FaMinus size={'2rem'} /></button>
+              </div>
             </div>
             ))
           )
