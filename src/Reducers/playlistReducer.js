@@ -7,7 +7,8 @@ const initialPlaylistState = {
     id: '',
     name: '',
     currentView: 0,
-    userID: ''
+    userID: '',
+    accessToken: ''
 };
 
 export const PlaylistContext = createContext()
@@ -34,6 +35,11 @@ export const playlistReducer = (state, action) => {
             return {
               ...state,
               currentView: action.payload
+            }
+        case 'SET_ACCESS_TOKEN':
+            return {
+              ...state,
+              accessToken: action.payload
             }
         case 'ADD_TRACKS_TO_PLAYLIST':
             return {

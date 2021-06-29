@@ -3,12 +3,13 @@ import qs from 'qs';
 import axios from 'axios';
 import UserProfile from './UserProfile';
 import PlaylistGenerator from './PlaylistGenerator';
-import { PlaylistProvider } from '../reducers/playlistReducer.js'
 import { ParametersProvider } from '../reducers/parametersReducer.js'
+import { usePlaylist } from '../reducers/playlistReducer';
 
 function PlaylistContainer() {
-  const [ accessToken, setAccessToken ] = useState(localStorage.getItem('token') ? localStorage.getItem('token') : '')
-  const token = window.location.search.substring(6)
+  const [ accessToken, setAccessToken ] = useState(localStorage.getItem('token') ? localStorage.getItem('token') : '');
+  const [ playlistState, dispatch ] = usePlaylist();
+  const token = window.location.search.substring(6);
 
     useEffect(() => {
       const data = {
@@ -26,6 +27,10 @@ function PlaylistContainer() {
         })
           .then(response  => {
             setAccessToken(response.data.access_token)
+            dispatch({
+              type: 'SET_ACCESS_TOKEN',
+              payload: response.data.access_token
+            })
             localStorage.setItem('token', response.data.access_token)
           })
           .catch(error => {

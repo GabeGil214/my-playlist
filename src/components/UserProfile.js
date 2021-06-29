@@ -6,7 +6,7 @@ function UserProfile(){
   const [userData, setUserData] = useState({})
   const [ displayStatus, setDisplayStatus ] = useState('hidden')
   const [ playlistState, dispatch ] = usePlaylist()
-  const accessToken = localStorage.getItem('token')
+  const accessToken = playlistState.accessToken
 
   useEffect(() => {
     axios.get('https://api.spotify.com/v1/me', {
@@ -23,14 +23,13 @@ function UserProfile(){
       setDisplayStatus('active')
     })
     .catch(error => {
-      console.log(error.response)
     })
-  }, [])
+    console.log("Reloaded")
+  }, [playlistState.accessToken])
 
   const getFirstLetter = function(userInfo){
     const username = userInfo.display_name ? userInfo.display_name : 'test';
     const uppercaseName = username.toUpperCase()
-
     return uppercaseName[0]
   }
 
