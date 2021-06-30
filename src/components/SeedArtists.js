@@ -6,9 +6,9 @@ import axios from 'axios';
 import Img from 'gatsby-image';
 
 function SeedArtists(props){
+  const [ selectedArtists, setSelectedArtists ] = useState([]);
   const [ queryResponse, setQueryResponse ] = useState([]);
   const [ errorResponse, setErrorResponse ] = useState('');
-  const [ selectedArtists, setSelectedArtists ] = useState([]);
   const [ parameters, parametersDispatch ] = useContext(ParametersContext);
   const [ playlist, playlistDispatch ] = useContext(PlaylistContext);
   const { accessToken } = props;
@@ -55,12 +55,11 @@ function SeedArtists(props){
       })
   }
 
-  const updateArtistSelection = function(artist){
-    const artistSelection = selectedArtists;
-    console.log(artist)
+  const updateArtistSelection = artist => {
+    const artistSelection = [...selectedArtists];
     artistSelection.push(artist)
     setSelectedArtists(artistSelection)
-    console.log(selectedArtists)
+    console.log(artistSelection)
   }
 
   return (
@@ -81,7 +80,7 @@ function SeedArtists(props){
             <li key={artist.id}>
               {
                 artist.images[2] ? <img src={artist.images[2].url} alt={artist.name} onClick={() => updateArtistSelection(artist)} className="artist-img"/> :
-                <Img fluid={data.placeholderImage.childImageSharp.fluid} alt={artist.name} onClick={() => setSelectedArtists(selectedArtists.push(artist))} className="artist-img"/>
+                <Img fluid={data.placeholderImage.childImageSharp.fluid} alt={artist.name} onClick={() => updateArtistSelection(artist)} className="artist-img"/>
               }
               {artist.name}
             </li>
