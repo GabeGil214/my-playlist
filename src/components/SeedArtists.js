@@ -59,7 +59,6 @@ function SeedArtists(props){
     const artistSelection = [...selectedArtists];
     artistSelection.push(artist)
     setSelectedArtists(artistSelection)
-    console.log(artistSelection)
   }
 
   return (

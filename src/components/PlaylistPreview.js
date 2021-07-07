@@ -35,13 +35,15 @@ function PlaylistPreview(props) {
   }
 
   const removeSong = function(index){
-    const newTrackList = trackList;
+    console.log(index)
+    const newTrackList = [...trackList];
+    console.log(newTrackList)
     newTrackList[index].selectedForPlaylist = false
     setTrackList(newTrackList)
   }
 
   const addSong = function(index) {
-    const newTrackList = trackList;
+    const newTrackList = [...trackList];
     newTrackList[index].selectedForPlaylist = true
     setTrackList(newTrackList)
   }
@@ -58,9 +60,9 @@ function PlaylistPreview(props) {
                 <p>{track.artists[0].name}</p>
               </div>
               <div className="button-holder">
-                <button className={`add ${track.selectedForPlaylist ? 'inactive' : 'active '}`} onClick={(index) => addSong(index)}><FaPlus size={'1.2rem'} /></button>
+                <button className={`add ${track.selectedForPlaylist ? 'inactive' : 'active'}`} onClick={() => addSong(index)}><FaPlus size={'1.2rem'} /></button>
                   <span>|</span>
-                <button className={`remove ${track.selectedForPlaylist ? 'active' : 'inactive '}`} onClick={(index) => removeSong(index)}><FaMinus size={'1.2rem'} /></button>
+                <button className={`remove ${track.selectedForPlaylist ? 'active' : 'inactive'}`} onClick={() => removeSong(index)}><FaMinus size={'1.2rem'} /></button>
               </div>
             </div>
             ))
