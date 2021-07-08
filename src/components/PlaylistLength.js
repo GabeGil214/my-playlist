@@ -2,15 +2,14 @@ import React, { useState, useEffect, useContext } from "react";
 import { ParametersContext } from '../reducers/parametersReducer';
 import { PlaylistContext, getRecommendations } from '../reducers/playlistReducer';
 
-function PlaylistLength(props){
+function PlaylistLength(){
   const [ playlist, playlistDispatch ] = useContext(PlaylistContext);
   const [ parameters, paramsDispatch ] = useContext(ParametersContext);
   const [ numberOfTracks, setNumberOfTracks ] = useState(0);
-  const { accessToken } = props;
 
 
   const handleRecommendations = function(){
-    getRecommendations(parameters, accessToken, playlistDispatch, numberOfTracks)
+    getRecommendations(parameters, playlist.accessToken, playlistDispatch, numberOfTracks)
   }
 
     return (
