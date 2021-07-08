@@ -11,7 +11,6 @@ function SeedArtists(props){
   const [ errorResponse, setErrorResponse ] = useState('');
   const [ parameters, parametersDispatch ] = useContext(ParametersContext);
   const [ playlist, playlistDispatch ] = useContext(PlaylistContext);
-  const { accessToken } = props;
 
   const data = useStaticQuery(graphql`
     query {
@@ -29,7 +28,7 @@ function SeedArtists(props){
     axios.get(`https://api.spotify.com/v1/search?q=${searchQuery}&type=artist&limit=5`,
       {
         headers: {
-        'Authorization': 'Bearer ' + accessToken
+        'Authorization': 'Bearer ' + playlist.accessToken
         }
       })
       .then(response => {
