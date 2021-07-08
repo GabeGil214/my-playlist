@@ -5,13 +5,9 @@ import qs from 'qs';
 import { PlaylistContext } from '../reducers/playlistReducer.js';
 import { getTrackIDs } from './helpers.js';
 
-function PlaylistPreview(props) {
+function PlaylistPreview() {
   const [ playlistState, playlistDispatch ] = useContext(PlaylistContext);
   const [ trackList, setTrackList ] = useState(playlistState.trackList ? playlistState.trackList : [])
-  const accessToken = localStorage.getItem('token');
-  console.log(trackList)
-  console.log(playlistState)
-
 
   useEffect(() => {
     if(trackList.length === 0){
@@ -29,7 +25,7 @@ function PlaylistPreview(props) {
     {
       headers: {
         'Content-Type' : 'application/json',
-        'Authorization' : 'Bearer ' + accessToken
+        'Authorization' : 'Bearer ' + playlistState.accessToken
       }
     })
   }

@@ -4,14 +4,14 @@ import Col from "react-bootstrap/Col"
 
 import axios from 'axios';
 
-function CreatePlaylist(props){
+function CreatePlaylist(){
   const [ playlistName, setPlaylistName ] = useState('');
   const [ state, dispatch ] = usePlaylist()
-  const { userID } = state
+  const { userID, accessToken } = state
   console.log(state)
 
   const handleNewPlaylist = function() {
-    createNewPlaylist(dispatch, playlistName, userID, props.accessToken)
+    createNewPlaylist(dispatch, playlistName, userID, accessToken)
   }
 
   return (

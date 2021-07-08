@@ -11,17 +11,16 @@ import SeedArtists from './SeedArtists';
 
 function PlaylistGenerator(props){
   const [ playlistState, dispatch ] = useContext(PlaylistContext)
-  const { accessToken } = props;
 
   return (
       <Fragment>
         <SwipeableViews
           disabled={true}
           index={playlistState.currentView} >
-          <CreatePlaylist accessToken={accessToken} />
-          <SeedArtists accessToken={accessToken} />
+          <CreatePlaylist />
+          <SeedArtists />
           <Parameters />
-          <PlaylistLength accessToken={accessToken} />
+          <PlaylistLength />
           <PlaylistPreview />
         </SwipeableViews >
       </Fragment>

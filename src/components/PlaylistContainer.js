@@ -4,19 +4,25 @@ import axios from 'axios';
 import UserProfile from './UserProfile';
 import PlaylistGenerator from './PlaylistGenerator';
 import { ParametersProvider } from '../reducers/parametersReducer.js'
+import { useQueryParam, StringParam } from "use-query-params";
 import { usePlaylist } from '../reducers/playlistReducer';
 
 function PlaylistContainer() {
-  const [ accessToken, setAccessToken ] = useState(localStorage.getItem('token') ? localStorage.getItem('token') : '');
   const [ playlistState, dispatch ] = usePlaylist();
-  const token = window.location.search.substring(6);
+  const [ token, setToken ] = useQueryParam('code', StringParam);
 
     useEffect(() => {
-      const data = {
-        grant_type: 'authorization_code',
-        code: token,
-        redirect_uri: 'http://localhost:8000/playlist'
-      }
+      if(typeof localStorage.getItem('token') !== 'undefined'){
+        dispatch({
+          type: 'SET_ACCESS_TOKEN',
+          payload: localStorage.getItem('token')
+        })
+      } else {
+        const data = {
+          grant_type: 'authorization_code',
+          code: token,
+          redirect_uri: 'http://localhost:8000/playlist'
+        }
 
         axios.post(`https://accounts.spotify.com/api/token`, qs.stringify(data),
         {
@@ -25,24 +31,24 @@ function PlaylistContainer() {
             'Authorization' : 'Basic ' + btoa(process.env.CLIENT_ID + ':' + process.env.CLIENT_SECRET)
           }
         })
-          .then(response  => {
-            setAccessToken(response.data.access_token)
-            dispatch({
-              type: 'SET_ACCESS_TOKEN',
-              payload: response.data.access_token
-            })
-            localStorage.setItem('token', response.data.access_token)
+        .then(response  => {
+          dispatch({
+            type: 'SET_ACCESS_TOKEN',
+            payload: response.data.access_token
           })
-          .catch(error => {
-            console.log(error.response)
-          })
+          localStorage.setItem('token', response.data.access_token)
+        })
+        .catch(error => {
+          console.log(error.response)
+        })
+      }
     },[])
 
 
   return (
     <ParametersProvider>
-        {accessToken.length && (
-          <PlaylistGenerator accessToken={accessToken} />
+        {playlistState.accessToken.length && (
+          <PlaylistGenerator />
         )}
     </ParametersProvider>
   );
