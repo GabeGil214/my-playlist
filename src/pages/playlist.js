@@ -1,4 +1,5 @@
 import React from "react"
+import { Router } from "@reach/router"
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 import Container from "react-bootstrap/Container"
@@ -13,7 +14,9 @@ const PlaylistPage = () => (
     <SEO title="Playlist Generator" />
     <Container>
       <Row className="justify-content-sm-center">
-        <PlaylistContainer />
+        <Router>
+          <PlaylistContainer path="/:code"/>
+        </Router>
       </Row>
     </Container>
   </Layout>
