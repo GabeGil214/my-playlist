@@ -10,6 +10,7 @@ import PlaylistLength from './PlaylistLength';
 import SeedArtists from './SeedArtists';
 
 function PlaylistGenerator(props){
+  console.log("Playlist Generator")
   const [ playlistState, dispatch ] = useContext(PlaylistContext)
 
   return (

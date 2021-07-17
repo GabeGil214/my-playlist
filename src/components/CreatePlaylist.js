@@ -8,7 +8,7 @@ function CreatePlaylist(){
   const [ playlistName, setPlaylistName ] = useState('');
   const [ state, dispatch ] = usePlaylist()
   const { userID, accessToken } = state
-  console.log(state)
+  console.log("Create Playlist")
 
   const handleNewPlaylist = function() {
     createNewPlaylist(dispatch, playlistName, userID, accessToken)

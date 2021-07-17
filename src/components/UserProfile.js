@@ -4,6 +4,7 @@ import axios from 'axios';
 
 function UserProfile(){
   const [userData, setUserData] = useState({})
+  console.log("User Profile")
   const [ displayStatus, setDisplayStatus ] = useState('hidden')
   const [ playlistState, dispatch ] = usePlaylist()
   const accessToken = playlistState.accessToken
@@ -24,7 +25,6 @@ function UserProfile(){
     })
     .catch(error => {
     })
-    console.log("Reloaded")
   }, [playlistState.accessToken])
 
   const getFirstLetter = function(userInfo){

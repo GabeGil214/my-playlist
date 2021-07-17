@@ -10,6 +10,7 @@ import { usePlaylist } from '../reducers/playlistReducer';
 function PlaylistContainer(props) {
   const [ playlistState, dispatch ] = usePlaylist();
   const [ token, setToken ] = props.token;
+  console.log("Playlist Container")
 
     useEffect(() => {
       if(typeof localStorage.getItem('access_token') !== 'undefined'){
