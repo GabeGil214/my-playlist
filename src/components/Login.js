@@ -10,7 +10,7 @@ function Login(){
 
   return (
     <Button size="lg">
-      <a href={`https://accounts.spotify.com/authorize/?response_type=code&client_id=${process.env.CLIENT_ID}&scope=${scopes.join("%20")}&redirect_uri=${redirectUri}&show_dialog=false`}>Login Now</a>
+      <a href={`https://accounts.spotify.com/authorize/?response_type=code&client_id=${process.env.GATSBY_CLIENT_ID}&scope=${scopes.join("%20")}&redirect_uri=${redirectUri}&show_dialog=false`}>Login Now</a>
     </Button>
   )
 }
