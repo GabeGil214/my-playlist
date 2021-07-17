@@ -15,7 +15,7 @@ const PlaylistPage = () => (
     <Container>
       <Row className="justify-content-sm-center">
         <Router>
-          <PlaylistContainer path="/:code"/>
+          <PlaylistContainer path="/playlist/:code"/>
         </Router>
       </Row>
     </Container>
