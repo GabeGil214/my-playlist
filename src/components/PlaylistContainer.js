@@ -7,15 +7,15 @@ import { ParametersProvider } from '../reducers/parametersReducer.js'
 import { useQueryParam, StringParam } from "use-query-params";
 import { usePlaylist } from '../reducers/playlistReducer';
 
-function PlaylistContainer() {
+function PlaylistContainer(props) {
   const [ playlistState, dispatch ] = usePlaylist();
-  const [ token, setToken ] = useQueryParam('code', StringParam);
+  const [ token, setToken ] = props.token;
 
     useEffect(() => {
-      if(typeof localStorage.getItem('token') !== 'undefined'){
+      if(typeof localStorage.getItem('access_token') !== 'undefined'){
         dispatch({
           type: 'SET_ACCESS_TOKEN',
-          payload: localStorage.getItem('token')
+          payload: localStorage.getItem('access_token')
         })
       } else {
         const data = {
@@ -31,7 +31,7 @@ function PlaylistContainer() {
               type: 'SET_ACCESS_TOKEN',
               payload: response.data.access_token
             })
-            localStorage.setItem('token', response.data.access_token)
+            localStorage.setItem('access_token', response.data.access_token)
           })
           .catch(error => {
             console.log(error.body)
