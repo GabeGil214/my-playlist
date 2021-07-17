@@ -24,23 +24,18 @@ function PlaylistContainer() {
           redirect_uri: 'http://localhost:8000/playlist'
         }
 
-        axios.post(`https://accounts.spotify.com/api/token`, qs.stringify(data),
-        {
-          headers: {
-            'Content-Type' : 'application/x-www-form-urlencoded',
-            'Authorization' : 'Basic ' + btoa(process.env.CLIENT_ID + ':' + process.env.CLIENT_SECRET)
-          }
-        })
-        .then(response  => {
-          dispatch({
-            type: 'SET_ACCESS_TOKEN',
-            payload: response.data.access_token
+        axios.get(`/.netlify/functions/fetchData?data=${data}`)
+          .then(res  => {
+            const response = res.json();
+            dispatch({
+              type: 'SET_ACCESS_TOKEN',
+              payload: response.data.access_token
+            })
+            localStorage.setItem('token', response.data.access_token)
           })
-          localStorage.setItem('token', response.data.access_token)
-        })
-        .catch(error => {
-          console.log(error.response)
-        })
+          .catch(error => {
+            console.log(error.body)
+          })
       }
     },[])
 
