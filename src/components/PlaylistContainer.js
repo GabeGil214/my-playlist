@@ -13,12 +13,12 @@ function PlaylistContainer(props) {
   console.log("Playlist Container")
 
     useEffect(() => {
-      if(typeof localStorage.getItem('access_token') !== 'undefined'){
-        dispatch({
-          type: 'SET_ACCESS_TOKEN',
-          payload: localStorage.getItem('access_token')
-        })
-      } else {
+      // if(typeof localStorage.getItem('access_token') !== 'undefined'){
+      //   dispatch({
+      //     type: 'SET_ACCESS_TOKEN',
+      //     payload: localStorage.getItem('access_token')
+      //   })
+      // } else {
         const data = {
           grant_type: 'authorization_code',
           code: token,
@@ -37,7 +37,7 @@ function PlaylistContainer(props) {
           .catch(error => {
             console.log(error.body)
           })
-      }
+      // }
     },[])
 
 
