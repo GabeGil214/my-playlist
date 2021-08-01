@@ -1,5 +1,6 @@
 import React, { useReducer, createContext } from 'react';
 import axios from 'axios';
+import qs from 'qs';
 import { navigate } from "gatsby"
 
 const initialPlaylistState = {
@@ -128,4 +129,24 @@ function getRecommendations(parameters, accessToken, dispatch, numberOfTracks){
     })
 }
 
-export {createNewPlaylist, getRecommendations}
+function getAccessToken(url, method, data, headers, dispatch){
+  axios({
+    method: method,
+    url: url,
+    data: method === 'GET' ? {} : qs.stringify(data),
+    headers: headers
+  })
+  .then(response  => {
+    dispatch({
+      type: 'SET_ACCESS_TOKEN',
+      payload: response.data.access_token
+    })
+    localStorage.setItem('access_token', response.data.access_token)
+    console.log(response)
+  })
+  .catch(error => {
+    console.log(error)
+  })
+}
+
+export {createNewPlaylist, getRecommendations, getAccessToken}

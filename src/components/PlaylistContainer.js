@@ -5,12 +5,14 @@ import UserProfile from './UserProfile';
 import PlaylistGenerator from './PlaylistGenerator';
 import { ParametersProvider } from '../reducers/parametersReducer.js'
 import { useQueryParam, StringParam } from "use-query-params";
-import { usePlaylist } from '../reducers/playlistReducer';
+import { usePlaylist, getAccessToken } from '../reducers/playlistReducer';
 
 function PlaylistContainer(props) {
   const [ playlistState, dispatch ] = usePlaylist();
-  const [ token, setToken ] = props.token;
+  const [ token, setToken ] = useQueryParam('code', StringParam);
   console.log("Playlist Container")
+  console.log(token)
+
 
     useEffect(() => {
       // if(typeof localStorage.getItem('access_token') !== 'undefined'){
@@ -19,24 +21,18 @@ function PlaylistContainer(props) {
       //     payload: localStorage.getItem('access_token')
       //   })
       // } else {
-        const data = {
-          grant_type: 'authorization_code',
-          code: token,
-          redirect_uri: 'http://localhost:8000/playlist'
-        }
-
-        axios.get(`/.netlify/functions/fetchData?data=${data}`)
-          .then(res  => {
-            const response = res.json();
-            dispatch({
-              type: 'SET_ACCESS_TOKEN',
-              payload: response.data.access_token
-            })
-            localStorage.setItem('access_token', response.data.access_token)
-          })
-          .catch(error => {
-            console.log(error.body)
-          })
+      const urlPath = process.env.NODE_ENV === 'production' ? `./netlify/functions/fetchData?data=${data}` : `https://accounts.spotify.com/api/token`
+      const method = process.env.NODE_ENV === 'production' ? 'GET' : 'POST'
+      const headers = process.env.NODE_ENV === 'production' ? {} : {
+        'Content-Type' : 'application/x-www-form-urlencoded',
+        'Authorization' : 'Basic ' + btoa(process.env.GATSBY_CLIENT_ID + ':' + process.env.CLIENT_SECRET)
+      }
+      const data = {
+        grant_type: 'authorization_code',
+        code: token,
+        redirect_uri: 'http://localhost:8000/playlist'
+      }
+        getAccessToken(urlPath, method, data, headers, dispatch)
       // }
     },[])
 
