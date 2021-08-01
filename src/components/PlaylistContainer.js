@@ -31,7 +31,7 @@ function PlaylistContainer(props) {
         code: token,
         redirect_uri: 'http://localhost:8000/playlist'
       }
-      const urlPath = process.env.NODE_ENV === 'production' ? `./netlify/functions/fetchData?data=${data}` : `https://accounts.spotify.com/api/token`
+      const urlPath = process.env.NODE_ENV === 'production' ? `/.netlify/functions/fetchData?data=${data}` : `https://accounts.spotify.com/api/token`
 
       getAccessToken(urlPath, method, data, headers, dispatch)
       // }
