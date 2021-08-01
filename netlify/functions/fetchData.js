@@ -1,9 +1,15 @@
 const axios = require("axios");
+const qs = require("qs");
 
 exports.handler = async function (event, context) {
   //Securely access environment variables here
   try {
-    const { data } = event.queryStringParameters;
+    const { code } = event.queryStringParameters;
+    const data = {
+       grant_type: 'authorization_code',
+       code,
+       redirect_uri: 'http://localhost:8000/playlist'
+    }
     const response = await axios.post(`https://accounts.spotify.com/api/token`, qs.stringify(data),
       {
         headers: {

@@ -21,18 +21,19 @@ function PlaylistContainer(props) {
       //     payload: localStorage.getItem('access_token')
       //   })
       // } else {
-      const urlPath = process.env.NODE_ENV === 'production' ? `./netlify/functions/fetchData?data=${data}` : `https://accounts.spotify.com/api/token`
       const method = process.env.NODE_ENV === 'production' ? 'GET' : 'POST'
       const headers = process.env.NODE_ENV === 'production' ? {} : {
         'Content-Type' : 'application/x-www-form-urlencoded',
         'Authorization' : 'Basic ' + btoa(process.env.GATSBY_CLIENT_ID + ':' + process.env.CLIENT_SECRET)
       }
-      const data = {
+      const data = process.env.NODE_ENV === 'production' ? token : {
         grant_type: 'authorization_code',
         code: token,
         redirect_uri: 'http://localhost:8000/playlist'
       }
-        getAccessToken(urlPath, method, data, headers, dispatch)
+      const urlPath = process.env.NODE_ENV === 'production' ? `./netlify/functions/fetchData?data=${data}` : `https://accounts.spotify.com/api/token`
+
+      getAccessToken(urlPath, method, data, headers, dispatch)
       // }
     },[])
 
