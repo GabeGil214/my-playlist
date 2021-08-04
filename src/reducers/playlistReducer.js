@@ -133,7 +133,6 @@ function getAccessToken(url, method, data, headers, dispatch){
   axios({
     method: method,
     url: url,
-    data: method === 'GET' ? {} : qs.stringify(data),
     headers: headers
   })
   .then(response  => {
@@ -145,7 +144,7 @@ function getAccessToken(url, method, data, headers, dispatch){
     console.log(response)
   })
   .catch(error => {
-    console.log(error.body)
+    console.log(error)
   })
 }
 
