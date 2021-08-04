@@ -7,7 +7,7 @@ exports.handler = async function (event, context) {
     const { code } = event.queryStringParameters;
     const data = {
        grant_type: 'authorization_code',
-       code,
+       code: code,
        redirect_uri: 'http://localhost:8000/playlist'
     }
     const response = await axios.post(`https://accounts.spotify.com/api/token`, qs.stringify(data),
@@ -25,7 +25,7 @@ exports.handler = async function (event, context) {
   } catch (error) {
     console.log(error)
     return {
-      statusCode: 404,,
+      statusCode: 404,
       body: error.toString()
     }
   }
