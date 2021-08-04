@@ -1,5 +1,6 @@
 const axios = require("axios");
 const qs = require("qs");
+const btoa = require("btoa");
 
 exports.handler = async function (event, context) {
   //Securely access environment variables here
