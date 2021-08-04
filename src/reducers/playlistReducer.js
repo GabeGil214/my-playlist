@@ -145,7 +145,7 @@ function getAccessToken(url, method, data, headers, dispatch){
     console.log(response)
   })
   .catch(error => {
-    console.log(error)
+    console.log(error.body)
   })
 }
 
