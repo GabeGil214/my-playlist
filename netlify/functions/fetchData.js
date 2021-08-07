@@ -19,10 +19,7 @@ exports.handler = function (event, context) {
     }
   )
   .then(response => {
-    return {
-      statusCode: 200,
-      body: JSON.stringify(response)
-    }
+    return response
   })
   .catch(error => {
     return {
