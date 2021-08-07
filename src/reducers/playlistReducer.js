@@ -135,8 +135,9 @@ function getAccessToken(url, method, data, headers, dispatch){
     url: url,
     headers: headers
   })
-  .then(response  => {
-    response = response.json()
+  .then(res => {
+    console.log(res)
+    const response = res.json()
     dispatch({
       type: 'SET_ACCESS_TOKEN',
       payload: response.data.access_token
