@@ -17,12 +17,14 @@ exports.handler = function (event, context) {
         'Authorization' : 'Basic ' + btoa(process.env.GATSBY_CLIENT_ID + ':' + process.env.CLIENT_SECRET)
       }
     }
-  ).then(response => {
+  )
+  .then(response => {
     return {
       statusCode: 200,
       body: JSON.stringify(response)
     }
-  }).error(error => {
+  })
+  .catch(error => {
     return {
       statusCode: 404,
       body: error.toString()
