@@ -133,11 +133,11 @@ function getAccessToken(url, method, data, headers, dispatch){
   axios({
     method: method,
     url: url,
+    data: data,
     headers: headers
   })
-  .then(res => {
-    console.log(res)
-    const response = res.json()
+  .then(response => {
+    console.log(response)
     dispatch({
       type: 'SET_ACCESS_TOKEN',
       payload: response.data.access_token

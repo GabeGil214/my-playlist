@@ -23,7 +23,7 @@ function PlaylistContainer(props) {
       // } else {
       const method = process.env.NODE_ENV === 'production' ? 'GET' : 'POST'
       const headers = process.env.NODE_ENV === 'production' ? {} : {
-        'Content-Type' : 'application/x-www-form-urlencoded',
+        'Content-Type' : 'application/json',
         'Authorization' : 'Basic ' + btoa(process.env.GATSBY_CLIENT_ID + ':' + process.env.CLIENT_SECRET)
       }
       const data = process.env.NODE_ENV === 'production' ? token : {
