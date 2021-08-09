@@ -130,12 +130,16 @@ function getRecommendations(parameters, accessToken, dispatch, numberOfTracks){
 }
 
 function getAccessToken(url, method, data, headers, dispatch){
-  axios({
-    method: method,
-    url: url,
-    data: data,
-    headers: headers
-  })
+  const config = method === 'GET' ? {
+    method,
+    url,
+  } : {
+    method,
+    url,
+    data: qs.stringify(data),
+    headers,
+  }
+  axios(config)
   .then(response => {
     console.log(response)
     dispatch({
