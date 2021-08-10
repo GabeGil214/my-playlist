@@ -4,6 +4,7 @@ const btoa = require("btoa");
 
 exports.handler = async function (event, context) {
   //Securely access environment variables here
+  let response;
   try {
     const { code } = event.queryStringParameters;
     const data = {
@@ -12,7 +13,7 @@ exports.handler = async function (event, context) {
        redirect_uri: 'http://mycustomplaylist.com/playlist'
     }
 
-    const response = axios.post(`https://accounts.spotify.com/api/token`, qs.stringify(data),
+    response = await axios.post(`https://accounts.spotify.com/api/token`, qs.stringify(data),
       {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
