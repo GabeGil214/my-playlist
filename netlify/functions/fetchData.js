@@ -12,7 +12,7 @@ exports.handler = async function (event, context) {
        redirect_uri: 'http://mycustomplaylist.com/playlist'
     }
 
-    const response = await axios.post(`https://accounts.spotify.com/api/token`, qs.stringify(data),
+    const response = axios.post(`https://accounts.spotify.com/api/token`, qs.stringify(data),
       {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
@@ -25,7 +25,7 @@ exports.handler = async function (event, context) {
       statusCode: 200,
       body: JSON.stringify(response)
     }
-    
+
   } catch(error) {
       return {
         statusCode: 404,
