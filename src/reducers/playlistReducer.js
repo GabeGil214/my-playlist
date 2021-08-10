@@ -129,7 +129,7 @@ function getRecommendations(parameters, accessToken, dispatch, numberOfTracks){
     })
 }
 
-function getAccessToken(url, method, data, headers, dispatch){
+function async getAccessToken(url, method, data, headers, dispatch){
   const config = method === 'GET' ? {
     method,
     url,
@@ -139,19 +139,18 @@ function getAccessToken(url, method, data, headers, dispatch){
     data: qs.stringify(data),
     headers,
   }
-  axios(config)
-  .then(response => {
+
+  try{
+    const response = await axios(config)
     console.log(response)
     dispatch({
       type: 'SET_ACCESS_TOKEN',
       payload: response.data.access_token
     })
     localStorage.setItem('access_token', response.data.access_token)
-    console.log(response)
-  })
-  .catch(error => {
+  } catch(error) {
     console.log(error)
-  })
+  }
 }
 
 export {createNewPlaylist, getRecommendations, getAccessToken}
