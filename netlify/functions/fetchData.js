@@ -19,17 +19,16 @@ exports.handler = async function (event, context) {
           'Authorization' : 'Basic ' + btoa(process.env.GATSBY_CLIENT_ID + ':' + process.env.CLIENT_SECRET)
         }
       }
-    )
-
-    return {
-      statusCode: 200,
-      body: JSON.stringify(response)
-    }
-
+    ).then((res) => res.json())
   } catch(error) {
       return {
         statusCode: 404,
         body: error.toString()
       }
+  }
+
+  return {
+    statusCode: 200,
+    body: JSON.stringify(response)
   }
 };
