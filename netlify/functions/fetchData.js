@@ -13,7 +13,7 @@ exports.handler = async function (event, context) {
        redirect_uri: 'http://mycustomplaylist.com/playlist'
     }
 
-    response = await axios.post(`https://accounts.spotify.com/api/token`, qs.stringify(data),
+    response = axios.post(`https://accounts.spotify.com/api/token`, qs.stringify(data),
       {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
