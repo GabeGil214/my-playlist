@@ -129,7 +129,7 @@ function getRecommendations(parameters, accessToken, dispatch, numberOfTracks){
     })
 }
 
-function async getAccessToken(url, method, data, headers, dispatch){
+async function getAccessToken(url, method, data, headers, dispatch){
   const config = method === 'GET' ? {
     method,
     url,
