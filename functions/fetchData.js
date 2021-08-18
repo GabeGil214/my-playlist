@@ -10,7 +10,7 @@ exports.handler = async function (event, context) {
 
     return {
       statusCode: 200,
-      body: response.toString()
+      body: JSON.stringify(response)
     }
   } catch (error) {
     return {statusCode: 500, body: error.toString()}

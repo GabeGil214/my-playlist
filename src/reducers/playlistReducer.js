@@ -139,7 +139,7 @@ function getAccessToken(url, method, data, headers, dispatch){
     data: qs.stringify(data),
     headers,
   }
-    axios(config).then(res => console.log(res.json())).catch(error => console.log(error))
+    axios(config).then(res => console.log(res)).catch(error => console.log(error))
   //   dispatch({
   //     type: 'SET_ACCESS_TOKEN',
   //     payload: response.data.access_token
