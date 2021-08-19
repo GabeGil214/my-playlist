@@ -139,15 +139,15 @@ function getAccessToken(url, method, data, headers, dispatch){
     data: qs.stringify(data),
     headers,
   }
-    axios(config).then(res => console.log(res)).catch(error => console.log(error))
-  //   dispatch({
-  //     type: 'SET_ACCESS_TOKEN',
-  //     payload: response.data.access_token
-  //   })
-  //   localStorage.setItem('access_token', response.data.access_token)
-  // } catch(error) {
-  //   console.log(error)
-  // }
+    axios(config).then(res => {
+      dispatch({
+        type: 'SET_ACCESS_TOKEN',
+        payload: response.data.access_token
+      })
+      localStorage.setItem('access_token', response.data.access_token)
+      console.log(res)
+    })
+    .catch(error => console.log(error))
 }
 
 export {createNewPlaylist, getRecommendations, getAccessToken}
