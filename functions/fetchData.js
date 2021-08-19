@@ -1,6 +1,5 @@
 const axios = require("axios");
 const qs = require("qs");
-const Buffer = require("buffer")
 
 exports.handler = async function (event, context) {
   //Securely access environment variables here
@@ -8,7 +7,7 @@ exports.handler = async function (event, context) {
 
     const apiString = process.env.GATSBY_CLIENT_ID + ':' + process.env.CLIENT_SECRET
 
-    Buffer.from(apiString).toString('base64')
+    const apiEncoded = Buffer.from(apiString, 'binary').toString('base64')
 
     const { code } = event.queryStringParameters
     const data = {
@@ -21,7 +20,7 @@ exports.handler = async function (event, context) {
         {
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
-            'Authorization' : 'Basic ' + apiString
+            'Authorization' : 'Basic ' + apiEncoded
           }
         })
 
