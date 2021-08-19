@@ -29,7 +29,7 @@ exports.handler = async function (event, context) {
       body: JSON.stringify(response.data)
     }
   } catch (error) {
-    return {statusCode: 500, body: error.toString()}
+    return {statusCode: 500, body: error_description.toString()}
   }
 
 
