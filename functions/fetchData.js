@@ -7,7 +7,7 @@ exports.handler = async function (event, context) {
 
     const apiString = process.env.GATSBY_CLIENT_ID + ':' + process.env.CLIENT_SECRET
 
-    const apiEncoded = Buffer.from(apiString, 'binary').toString('base64')
+    const apiEncoded = Buffer.from(apiString).toString('base64')
 
     const { code } = event.queryStringParameters
     const data = {
