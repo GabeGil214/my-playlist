@@ -139,13 +139,12 @@ function getAccessToken(url, method, data, headers, dispatch){
     data: qs.stringify(data),
     headers,
   }
-    axios(config).then(res => {
+    axios(config).then(response => {
       dispatch({
         type: 'SET_ACCESS_TOKEN',
         payload: response.data.access_token
       })
       localStorage.setItem('access_token', response.data.access_token)
-      console.log(res)
     })
     .catch(error => console.log(error))
 }
