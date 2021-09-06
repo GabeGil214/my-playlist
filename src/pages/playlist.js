@@ -13,7 +13,7 @@ const PlaylistPage = () => (
   <Layout>
     <SEO title="Playlist Generator" />
     <Container>
-      <Row className="justify-content-sm-center">
+      <Row className="justify-content-center">
         <Router>
           <PlaylistContainer path=":code"/>
         </Router>
