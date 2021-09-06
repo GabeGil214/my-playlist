@@ -248,6 +248,12 @@ Playlst Preview
   margin-bottom: 0;
 }
 
+@media screen and (max-width: 599px){
+  .album-cover {
+    width: 100px;
+  }
+}
+
 .song {
   display: flex;
   align-items: center;
