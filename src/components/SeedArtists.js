@@ -56,12 +56,24 @@ function SeedArtists(props){
 
   const updateArtistSelection = artist => {
     const artistSelection = [...selectedArtists];
-    artistSelection.push(artist)
-    setSelectedArtists(artistSelection)
+    if (artistSelection.length === 5){
+      setErrorResponse("You have reached the maximum amount of artists allowed.")
+    } else {
+      setErrorResponse("")
+      artistSelection.push(artist)
+      setSelectedArtists(artistSelection)
+    }
   }
 
   return (
     <div className="form-container">
+      {errorResponse && (
+        <div className="error-modal">
+          <div className="error-message">
+            <p>{errorResponse}</p>
+          </div>
+        </div>
+      )}
       <h3>Step 2: Select Artists to Use as Basis For Your Playlist</h3>
       <ul className="selected-artists">
         {selectedArtists.length ? selectedArtists.map(artist => (

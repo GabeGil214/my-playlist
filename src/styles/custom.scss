@@ -204,6 +204,16 @@ Select Artists Page
    height: 125px;
 }
 
+.error-mesage {
+    padding: 0.8rem 2rem;
+    background: #b93737;
+    max-width: 575px;
+    margin: 0 auto 2rem;
+    opacity: 1;
+    border-radius: 30px;
+    transition: all 0.2s 0.2s linear;
+}
+
 .search-dropdown {
   margin-top: $gutter-lg;
   & li {

@@ -8,6 +8,7 @@ import PlaylistPreview from './PlaylistPreview';
 import { PlaylistContext } from '../reducers/playlistReducer.js';
 import PlaylistLength from './PlaylistLength';
 import SeedArtists from './SeedArtists';
+import ConfirmationPage from './ConfirmationPage';
 
 function PlaylistGenerator(props){
   console.log("Playlist Generator")
@@ -23,6 +24,7 @@ function PlaylistGenerator(props){
           <Parameters />
           <PlaylistLength />
           <PlaylistPreview />
+          <ConfirmationPage />
         </SwipeableViews >
       </Fragment>
   )

@@ -1,12 +1,9 @@
 import PropTypes from "prop-types"
 import React from "react"
 import UserProfile from './UserProfile';
-
 import Row from "react-bootstrap/Row"
 
 function Header({ siteTitle }){
-
-
   return(
     <header
       style={{
@@ -19,7 +16,6 @@ function Header({ siteTitle }){
       </Row>
     </header>
   )
-
 }
 
 Header.propTypes = {

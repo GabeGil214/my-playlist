@@ -20,13 +20,17 @@ function PlaylistPreview() {
       uris: getTrackIDs(trackList)
     }
 
-    console.log(data)
     axios.post(`https://api.spotify.com/v1/playlists/${playlistState.id}/tracks`, data,
     {
       headers: {
         'Content-Type' : 'application/json',
         'Authorization' : 'Bearer ' + playlistState.accessToken
       }
+    })
+
+    playlistDispatch({
+      type: 'NEXT_STEP',
+      payload: 5
     })
   }
 
@@ -64,7 +68,7 @@ function PlaylistPreview() {
             ))
           )
         }
-      <button className="btn btn-primary" onClick={addSongsToPlaylist}>Add Songs to Playlist</button>
+      <button className="btn btn-primary" onClick={addSongsToPlaylist}>Finalize Playlist</button>
     </div>
   );
 }
