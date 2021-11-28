@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { navigate, useStaticQuery, graphql } from 'gatsby';
 import { ParametersContext } from '../reducers/parametersReducer';
 import { PlaylistContext } from '../reducers/playlistReducer';
@@ -11,6 +11,8 @@ function SeedArtists(props){
   const [ errorResponse, setErrorResponse ] = useState('');
   const [ parameters, parametersDispatch ] = useContext(ParametersContext);
   const [ playlist, playlistDispatch ] = useContext(PlaylistContext);
+  console.log(selectedArtists)
+
 
   const data = useStaticQuery(graphql`
     query {
@@ -65,6 +67,14 @@ function SeedArtists(props){
     }
   }
 
+  const removeArtistSelection = removedArtist => {
+    const artistSelection = [...selectedArtists];
+    console.log(artistSelection)
+    const newArtistSelection = artistSelection.filter(artist => artist.name !== removedArtist.name)
+    console.log(newArtistSelection)
+    setSelectedArtists(newArtistSelection)
+  }
+
   return (
     <div className="form-container">
       {errorResponse && (
@@ -77,7 +87,7 @@ function SeedArtists(props){
       <h3>Step 2: Select Artists to Use as Basis For Your Playlist</h3>
       <ul className="selected-artists">
         {selectedArtists.length ? selectedArtists.map(artist => (
-          <li key={artist.id}>{artist.name}</li>
+          <li key={artist.id}>{artist.name}<span onClick={() => removeArtistSelection(artist)} className="remove-button">X</span></li>
           ))
           :
           <li>No artists selected</li>

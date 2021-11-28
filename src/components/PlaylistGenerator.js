@@ -11,14 +11,25 @@ import SeedArtists from './SeedArtists';
 import ConfirmationPage from './ConfirmationPage';
 
 function PlaylistGenerator(props){
-  console.log("Playlist Generator")
+  const [ currentViewHeight, setCurrentViewHeight ] = useState(0)
   const [ playlistState, dispatch ] = useContext(PlaylistContext)
+
+  useEffect(() => {
+    resizeElementHeight()
+  }, [])
+
+  const resizeElementHeight = function() {
+    let height;
+    height = document.getElementsByClassName(".form-container")
+    setCurrentViewHeight(height[playlistState.currentView])
+  }
 
   return (
       <Fragment>
         <SwipeableViews
           disabled={true}
-          index={playlistState.currentView} >
+          index={playlistState.currentView}
+          style={{height: currentViewHeight}} >
           <CreatePlaylist />
           <SeedArtists />
           <Parameters />

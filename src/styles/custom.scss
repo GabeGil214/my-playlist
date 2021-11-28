@@ -214,6 +214,11 @@ Select Artists Page
     transition: all 0.2s 0.2s linear;
 }
 
+.remove-button {
+  float: right;
+  margin-left: 15px;
+}
+
 .search-dropdown {
   margin-top: $gutter-lg;
   & li {

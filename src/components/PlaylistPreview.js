@@ -27,11 +27,18 @@ function PlaylistPreview() {
         'Authorization' : 'Bearer ' + playlistState.accessToken
       }
     })
-
-    playlistDispatch({
-      type: 'NEXT_STEP',
-      payload: 5
+    .then(response => {
+      setTrackList([])
+      playlistDispatch({
+        type: 'NEXT_STEP',
+        payload: 5
+      })
     })
+    .catch(error => {
+      console.log(error)
+    })
+
+
   }
 
   const removeSong = function(index){
