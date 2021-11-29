@@ -11,8 +11,6 @@ function SeedArtists(props){
   const [ errorResponse, setErrorResponse ] = useState('');
   const [ parameters, parametersDispatch ] = useContext(ParametersContext);
   const [ playlist, playlistDispatch ] = useContext(PlaylistContext);
-  console.log(selectedArtists)
-
 
   const data = useStaticQuery(graphql`
     query {
@@ -58,8 +56,11 @@ function SeedArtists(props){
 
   const updateArtistSelection = artist => {
     const artistSelection = [...selectedArtists];
+
     if (artistSelection.length === 5){
       setErrorResponse("You have reached the maximum amount of artists allowed.")
+    } else if(isArtistAlreadySelected(artistSelection, artist)){
+      setErrorResponse("Artist has already been selected.")
     } else {
       setErrorResponse("")
       artistSelection.push(artist)
@@ -69,10 +70,21 @@ function SeedArtists(props){
 
   const removeArtistSelection = removedArtist => {
     const artistSelection = [...selectedArtists];
-    console.log(artistSelection)
     const newArtistSelection = artistSelection.filter(artist => artist.name !== removedArtist.name)
-    console.log(newArtistSelection)
+
     setSelectedArtists(newArtistSelection)
+  }
+
+
+  const isArtistAlreadySelected = function(artistList, artist){
+    let isArtistSelected = false;
+
+    artistList.forEach(currentArtist => {
+      if(currentArtist.name === artist.name){
+        isArtistSelected = true;
+      }})
+
+      return isArtistSelected;
   }
 
   return (
