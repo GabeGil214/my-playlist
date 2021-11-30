@@ -112,7 +112,7 @@ function SeedArtists(props){
             <li key={artist.id}>
               {
                 artist.images[2] ? <img src={artist.images[2].url} alt={artist.name} onClick={() => updateArtistSelection(artist)} className="artist-img"/> :
-                <Img fluid={data.placeholderImage.childImageSharp.fluid} alt={artist.name} onClick={() => updateArtistSelection(artist)} className="artist-img"/>
+                <div className="artist-img" onClick={() => updateArtistSelection(artist)}><Img fluid={data.placeholderImage.childImageSharp.fluid} alt={artist.name} imgStyle={{borderRadius: '50%',}}/></div>
               }
               {artist.name}
             </li>
