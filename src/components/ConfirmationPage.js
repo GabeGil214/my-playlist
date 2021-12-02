@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 
 import { PlaylistContext } from '../reducers/playlistReducer.js';
 
 
 function ConfirmationPage() {
-  const [ playlist, playlistDispatch ] = useContext(PlaylistContext);
+  const [ playlist ] = useContext(PlaylistContext);
 
   return (
     <div className="form-container">

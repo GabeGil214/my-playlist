@@ -16,6 +16,7 @@ function PlaylistGenerator(props){
 
   useEffect(() => {
     resizeElementHeight()
+    window.scrollTo(0,0)
   }, [])
 
   const resizeElementHeight = function() {

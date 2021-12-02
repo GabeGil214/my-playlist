@@ -1,7 +1,6 @@
 import React, { useReducer, createContext } from 'react';
 import axios from 'axios';
 import qs from 'qs';
-import { navigate } from "gatsby"
 
 const initialPlaylistState = {
     trackList: [],

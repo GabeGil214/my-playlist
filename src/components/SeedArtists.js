@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { navigate, useStaticQuery, graphql } from 'gatsby';
+import { useStaticQuery, graphql } from 'gatsby';
 import { ParametersContext } from '../reducers/parametersReducer';
 import { PlaylistContext } from '../reducers/playlistReducer';
 import axios from 'axios';
@@ -87,6 +87,12 @@ function SeedArtists(props){
       return isArtistSelected;
   }
 
+  const handleKeyPress = function(artist, event){
+    if(event.key === 'Enter'){
+      updateArtistSelection(artist)
+    }
+  }
+
   return (
     <div className="form-container">
       {errorResponse && (
@@ -99,7 +105,7 @@ function SeedArtists(props){
       <h3>Step 2: Select Artists to Use as Basis For Your Playlist</h3>
       <ul className="selected-artists">
         {selectedArtists.length ? selectedArtists.map(artist => (
-          <li key={artist.id}>{artist.name}<span onClick={() => removeArtistSelection(artist)} className="remove-button">X</span></li>
+          <li key={artist.id}>{artist.name}<span role="button" onKeyPress={(event) => handleKeyPress(artist, event)} onClick={() => removeArtistSelection(artist)} className="remove-button">X</span></li>
           ))
           :
           <li>No artists selected</li>
@@ -111,8 +117,8 @@ function SeedArtists(props){
           {queryResponse && ( queryResponse.map(artist => (
             <li key={artist.id}>
               {
-                artist.images[2] ? <img src={artist.images[2].url} alt={artist.name} onClick={() => updateArtistSelection(artist)} className="artist-img"/> :
-                <div className="artist-img" onClick={() => updateArtistSelection(artist)}><Img fluid={data.placeholderImage.childImageSharp.fluid} alt={artist.name} imgStyle={{borderRadius: '50%',}}/></div>
+                artist.images[2] ? <img src={artist.images[2].url} alt={artist.name} role="button" onKeyPress={(event) => handleKeyPress(artist, event)} onClick={() => updateArtistSelection(artist)} className="artist-img"/> :
+                <div className="artist-img" onKeyPress={(event) => handleKeyPress(artist, event)} onClick={() => updateArtistSelection(artist)} role="button"><Img fluid={data.placeholderImage.childImageSharp.fluid} alt={artist.name} imgStyle={{borderRadius: '50%',}}/></div>
               }
               {artist.name}
             </li>
