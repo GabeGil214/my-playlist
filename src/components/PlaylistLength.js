@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { ParametersContext } from '../reducers/parametersReducer';
 import { PlaylistContext, getRecommendations } from '../reducers/playlistReducer';
 
 function PlaylistLength(){
   const [ playlist, playlistDispatch ] = useContext(PlaylistContext);
-  const [ parameters, paramsDispatch ] = useContext(ParametersContext);
+  const [ parameters ] = useContext(ParametersContext);
   const [ numberOfTracks, setNumberOfTracks ] = useState(0);
 
   const handleRecommendations = function(){

@@ -25,7 +25,7 @@ function UserProfile(){
     })
     .catch(error => {
     })
-  }, [accessToken])
+  }, [accessToken, dispatch])
 
   const getFirstLetter = function(userInfo){
     const username = userInfo.display_name ? userInfo.display_name : 'test';

@@ -9,7 +9,8 @@ function SeedArtists(props){
   const [ selectedArtists, setSelectedArtists ] = useState([]);
   const [ queryResponse, setQueryResponse ] = useState([]);
   const [ errorResponse, setErrorResponse ] = useState('');
-  const [ parameters, parametersDispatch ] = useContext(ParametersContext);
+  const parameters = useContext(ParametersContext);
+  const parametersDispatch = parameters[1];
   const [ playlist, playlistDispatch ] = useContext(PlaylistContext);
 
   const data = useStaticQuery(graphql`

@@ -1,12 +1,9 @@
-import React, { useState } from "react"
-import axios from 'axios'
-
+import React from "react"
 import Button from "react-bootstrap/Button"
 
 function Login(){
   const scopes = ["user-read-private", "user-read-email", "playlist-modify-public"]
   const redirectUri = process.env.NODE_ENV === 'development' ? "http://localhost:8000/playlist" : "https://mycustomplaylist.com/playlist"
-
 
   return (
     <Button size="lg">

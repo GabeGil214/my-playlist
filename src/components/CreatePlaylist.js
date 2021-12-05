@@ -1,7 +1,6 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { usePlaylist, createNewPlaylist } from '../reducers/playlistReducer.js';
 import Col from "react-bootstrap/Col"
-import axios from 'axios';
 
 function CreatePlaylist(){
   const [ playlistName, setPlaylistName ] = useState('');

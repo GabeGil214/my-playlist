@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { FaPlus, FaMinus } from 'react-icons/fa';
 import axios from 'axios';
-import qs from 'qs';
 import { PlaylistContext } from '../reducers/playlistReducer.js';
 import { getTrackIDs } from './helpers.js';
 
@@ -13,7 +12,7 @@ function PlaylistPreview() {
     if(trackList.length === 0){
       setTrackList(playlistState.trackList)
     }
-  },[playlistState])
+  },[trackList, playlistState])
 
   const addSongsToPlaylist = function(){
     const data = {
@@ -67,9 +66,9 @@ function PlaylistPreview() {
                 <p>{track.artists[0].name}</p>
               </div>
               <div className="button-holder">
-                <button className={`add ${track.selectedForPlaylist ? 'inactive' : 'active'}`} onClick={() => addSong(index)}><FaPlus size={'1.2rem'} /></button>
+                <button className={`add ${track.selectedForPlaylist ? 'inactive' : 'active'}`} aria-label="Add Song" type="button" onClick={() => addSong(index)}><FaPlus size={'1.2rem'} /></button>
                   <span>|</span>
-                <button className={`remove ${track.selectedForPlaylist ? 'active' : 'inactive'}`} onClick={() => removeSong(index)}><FaMinus size={'1.2rem'} /></button>
+                <button className={`remove ${track.selectedForPlaylist ? 'active' : 'inactive'}`} aria-label="Remove Song" type="button" onClick={() => removeSong(index)}><FaMinus size={'1.2rem'} /></button>
               </div>
             </div>
             ))
