@@ -116,10 +116,16 @@ function SeedArtists(props){
       <div className="artists">
         <ul className="search-dropdown">
           {queryResponse && ( queryResponse.map(artist => (
-            <li key={artist.id}>
+            <li
+              className={isArtistAlreadySelected(selectedArtists, artist) ? 'active artist' : 'artist' }
+              key={artist.id}
+              onKeyPress={(event) => handleKeyPress(artist, event)}
+              onClick={() => updateArtistSelection(artist)}
+              role="button"
+              >
               {
-                artist.images[2] ? <img src={artist.images[2].url} alt={artist.name} role="button" onKeyPress={(event) => handleKeyPress(artist, event)} onClick={() => updateArtistSelection(artist)} className="artist-img"/> :
-                <div className="artist-img" onKeyPress={(event) => handleKeyPress(artist, event)} onClick={() => updateArtistSelection(artist)} role="button"><Img fluid={data.placeholderImage.childImageSharp.fluid} alt={artist.name} imgStyle={{borderRadius: '50%',}}/></div>
+                artist.images[2] ? <img src={artist.images[2].url} alt={artist.name} className="artist-img"/> :
+                <div className="artist-img"><Img fluid={data.placeholderImage.childImageSharp.fluid} alt={artist.name} imgStyle={{borderRadius: '50%',}}/></div>
               }
               {artist.name}
             </li>
