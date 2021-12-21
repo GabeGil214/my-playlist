@@ -59,9 +59,9 @@ function PlaylistPreview() {
       <h2>Here are your recommendend songs:</h2>
         {trackList.length > 0 && (
           trackList.map((track, index) => (
-            <div key={track.id} className={`song ${track.selectedForPlaylist ? 'active' : 'inactive'}`}>
-              <img src={track.album.images[1].url} className="album-cover" alt={track.album.name} />
-              <div className="song-info">
+            <div key={track.id} className="song">
+              <img src={track.album.images[1].url} className={`album-cover ${track.selectedForPlaylist ? 'active' : 'inactive'}`} alt={track.album.name} />
+              <div className={`song-info ${track.selectedForPlaylist ? 'active' : 'inactive'}`}>
                 <h4>{track.name}</h4>
                 <p>{track.artists[0].name}</p>
               </div>
