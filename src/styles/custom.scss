@@ -202,6 +202,8 @@ Select Artists Page
    margin-right: 1rem;
    width: 125px;
    height: 125px;
+   vertical-align: middle;
+   display: inline-block;
 }
 
 .error-mesage {
@@ -228,6 +230,16 @@ Select Artists Page
     margin-bottom: $gutter-sm;
   }
 }
+
+.artist {
+    padding: 1rem 2rem;
+    box-shadow: 2px 2px 2px 4px #20202010;
+    &.active {
+      box-shadow: 1px 1px 2px 4px #5dbb60;
+    }
+}
+
+
 
 .artists  {
   max-width: 550px;

@@ -1,11 +1,12 @@
-import React, { useState, useEffect, Fragment, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { PlaylistContext } from '../reducers/playlistReducer.js';
 import { ParametersContext } from '../reducers/parametersReducer';
-import getTrackIDs from './helpers.js';
 
 function Parameters(){
-  const [ parameters, parametersDispatch ] = useContext(ParametersContext);
-  const [ playlist, playlistDispatch ] = useContext(PlaylistContext);
+  const parameters = useContext(ParametersContext);
+  const playlist = useContext(PlaylistContext);
+  const parametersDispatch = parameters[1];
+  const playlistDispatch = playlist[1];
   const [ danceability, setDanceability ] = useState(0)
   const [ acousticness, setAcousticness ] = useState(0)
   const [ energy, setEnergy ] = useState(0)

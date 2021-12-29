@@ -1,5 +1,4 @@
 import React, { useReducer, createContext } from 'react';
-import axios from 'axios';
 
 const initialParametersState = {
     seedArtists: [],
@@ -48,13 +47,3 @@ export const ParametersProvider = props => {
     </ParametersContext.Provider>
   )
 }
-
-
-
-// function useParameters() {
-//   const context = React.useContext(ParametersContext)
-//   if (context === undefined) {
-//     throw new Error('useParameters must be used within a ParametersProvider')
-//   }
-//   return context
-// }

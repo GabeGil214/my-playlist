@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { usePlaylist } from '../reducers/playlistReducer';
 import axios from 'axios';
 
@@ -25,7 +25,7 @@ function UserProfile(){
     })
     .catch(error => {
     })
-  }, [playlistState.accessToken])
+  }, [accessToken, dispatch])
 
   const getFirstLetter = function(userInfo){
     const username = userInfo.display_name ? userInfo.display_name : 'test';

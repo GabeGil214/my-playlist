@@ -1,7 +1,4 @@
-import React, { useEffect, useState } from "react";
-import qs from 'qs';
-import axios from 'axios';
-import UserProfile from './UserProfile';
+import React, { useEffect } from "react";
 import PlaylistGenerator from './PlaylistGenerator';
 import { ParametersProvider } from '../reducers/parametersReducer.js'
 import { useQueryParam, StringParam } from "use-query-params";
@@ -9,7 +6,7 @@ import { usePlaylist, getAccessToken } from '../reducers/playlistReducer';
 
 function PlaylistContainer(props) {
   const [ playlistState, dispatch ] = usePlaylist();
-  const [ token, setToken ] = useQueryParam('code', StringParam);
+  const [ token ] = useQueryParam('code', StringParam);
 
     useEffect(() => {
       const method = process.env.NODE_ENV === 'production' ? 'GET' : 'POST'
@@ -27,7 +24,7 @@ function PlaylistContainer(props) {
       const urlPath = process.env.NODE_ENV === 'production' ? `/.netlify/functions/fetchData?code=${data}` : `https://accounts.spotify.com/api/token`
 
       getAccessToken(urlPath, method, data, headers, dispatch)
-    },[])
+    },[dispatch, token])
 
 
   return (

@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { navigate, useStaticQuery, graphql } from 'gatsby';
+import { useStaticQuery, graphql } from 'gatsby';
 import { ParametersContext } from '../reducers/parametersReducer';
 import { PlaylistContext } from '../reducers/playlistReducer';
 import axios from 'axios';
@@ -9,10 +9,9 @@ function SeedArtists(props){
   const [ selectedArtists, setSelectedArtists ] = useState([]);
   const [ queryResponse, setQueryResponse ] = useState([]);
   const [ errorResponse, setErrorResponse ] = useState('');
-  const [ parameters, parametersDispatch ] = useContext(ParametersContext);
+  const parameters = useContext(ParametersContext);
+  const parametersDispatch = parameters[1];
   const [ playlist, playlistDispatch ] = useContext(PlaylistContext);
-  console.log(selectedArtists)
-
 
   const data = useStaticQuery(graphql`
     query {
@@ -58,8 +57,11 @@ function SeedArtists(props){
 
   const updateArtistSelection = artist => {
     const artistSelection = [...selectedArtists];
+
     if (artistSelection.length === 5){
       setErrorResponse("You have reached the maximum amount of artists allowed.")
+    } else if(isArtistAlreadySelected(artistSelection, artist)){
+      setErrorResponse("Artist has already been selected.")
     } else {
       setErrorResponse("")
       artistSelection.push(artist)
@@ -69,10 +71,27 @@ function SeedArtists(props){
 
   const removeArtistSelection = removedArtist => {
     const artistSelection = [...selectedArtists];
-    console.log(artistSelection)
     const newArtistSelection = artistSelection.filter(artist => artist.name !== removedArtist.name)
-    console.log(newArtistSelection)
+
     setSelectedArtists(newArtistSelection)
+  }
+
+
+  const isArtistAlreadySelected = function(artistList, artist){
+    let isArtistSelected = false;
+
+    artistList.forEach(currentArtist => {
+      if(currentArtist.name === artist.name){
+        isArtistSelected = true;
+      }})
+
+      return isArtistSelected;
+  }
+
+  const handleKeyPress = function(artist, event){
+    if(event.key === 'Enter'){
+      updateArtistSelection(artist)
+    }
   }
 
   return (
@@ -87,7 +106,7 @@ function SeedArtists(props){
       <h3>Step 2: Select Artists to Use as Basis For Your Playlist</h3>
       <ul className="selected-artists">
         {selectedArtists.length ? selectedArtists.map(artist => (
-          <li key={artist.id}>{artist.name}<span onClick={() => removeArtistSelection(artist)} className="remove-button">X</span></li>
+          <li key={artist.id}>{artist.name}<span role="button" onKeyPress={(event) => handleKeyPress(artist, event)} onClick={() => removeArtistSelection(artist)} className="remove-button">X</span></li>
           ))
           :
           <li>No artists selected</li>
@@ -97,10 +116,16 @@ function SeedArtists(props){
       <div className="artists">
         <ul className="search-dropdown">
           {queryResponse && ( queryResponse.map(artist => (
-            <li key={artist.id}>
+            <li
+              className={isArtistAlreadySelected(selectedArtists, artist) ? 'active artist' : 'artist' }
+              key={artist.id}
+              onKeyPress={(event) => handleKeyPress(artist, event)}
+              onClick={() => updateArtistSelection(artist)}
+              role="button"
+              >
               {
-                artist.images[2] ? <img src={artist.images[2].url} alt={artist.name} onClick={() => updateArtistSelection(artist)} className="artist-img"/> :
-                <Img fluid={data.placeholderImage.childImageSharp.fluid} alt={artist.name} onClick={() => updateArtistSelection(artist)} className="artist-img"/>
+                artist.images[2] ? <img src={artist.images[2].url} alt={artist.name} className="artist-img"/> :
+                <div className="artist-img"><Img fluid={data.placeholderImage.childImageSharp.fluid} alt={artist.name} imgStyle={{borderRadius: '50%',}}/></div>
               }
               {artist.name}
             </li>
