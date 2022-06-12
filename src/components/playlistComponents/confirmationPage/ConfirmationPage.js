@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { PlaylistContext } from '../reducers/playlistReducer.js';
+import { PlaylistContext } from '@contexts/playlistContext';
 
 function ConfirmationPage() {
   const [ playlist ] = useContext(PlaylistContext);

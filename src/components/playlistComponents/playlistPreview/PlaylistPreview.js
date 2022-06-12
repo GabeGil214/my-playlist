@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { FaPlus, FaMinus } from 'react-icons/fa';
 import axios from 'axios';
-import { PlaylistContext } from '../reducers/playlistReducer.js';
-import { getTrackIDs } from './helpers.js';
+import { PlaylistContext } from '@contexts/playlistContext';
+import { getTrackIDs } from '@components/helpers.js';
 
 function PlaylistPreview() {
   const [ playlistState, playlistDispatch ] = useContext(PlaylistContext);

@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { usePlaylist } from '../reducers/playlistReducer';
+import { usePlaylist } from '@contexts/playlistContext';
 import axios from 'axios';
 
 function UserProfile(){
   const [userData, setUserData] = useState({})
-  console.log("User Profile")
   const [ displayStatus, setDisplayStatus ] = useState('hidden')
   const [ playlistState, dispatch ] = usePlaylist()
   const accessToken = playlistState.accessToken

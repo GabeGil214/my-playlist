@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
-import PlaylistGenerator from './PlaylistGenerator';
-import { ParametersProvider } from '../reducers/parametersReducer.js'
+import PlaylistGenerator from '@components/playlistComponents/playlistGenerator/PlaylistGenerator';
+import { ParametersProvider } from '@contexts/parametersContext'
 import { useQueryParam, StringParam } from "use-query-params";
-import { usePlaylist, getAccessToken } from '../reducers/playlistReducer';
+import { usePlaylist, getAccessToken } from '@contexts/playlistContext';
 
-function PlaylistContainer(props) {
+function Playlist(props) {
   const [ playlistState, dispatch ] = usePlaylist();
   const [ token ] = useQueryParam('code', StringParam);
 
@@ -36,4 +36,4 @@ function PlaylistContainer(props) {
   );
 }
 
-export default PlaylistContainer;
+export default Playlist;

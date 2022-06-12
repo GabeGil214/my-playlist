@@ -1,0 +1,18 @@
+@import "@sass/mixins";
+
+/*==================
+Header section
+===================*/
+
+.header {
+    padding: 1.2rem;
+    text-align: center;
+    width: auto;
+    justify-content: center;
+    & h1 {
+      font-size: $font-lg;
+      font-weight: 700;
+      margin-bottom: 0;
+      color: $primary-green;
+    }
+}

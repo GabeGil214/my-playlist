@@ -1,0 +1,80 @@
+/*customizations to react-bootstrap styles*/
+
+/*================
+Default Settings
+==================*/
+
+* {
+  font-size: 16px;
+}
+
+#gatsby-focus-wrapper {
+  overflow-x: hidden;
+}
+
+body {
+  background: #121212!important;
+}
+
+p, h2, h3 {
+  color: #efefef;
+}
+
+
+$primary-green: #5DBB60;
+$dark-green: darken($primary-green, 20%);
+$primary-black: #222;
+$button-padding: 0.25rem 2rem 0.5rem 2rem;
+$input-padding: 0.275rem 1rem;
+$gutter-sm: 1rem;
+$gutter-md: 1.5rem;
+$gutter-lg: 2rem;
+$font-lg: 1.4rem;
+$font-md: 1.2rem;
+$font-sm: 1rem;
+
+
+
+/*==================
+Buttons/Typography
+===================*/
+
+.btn.btn-primary {
+  background: $primary-green;
+  border-color: $primary-green;
+  border-radius: 0;
+  padding: $button-padding;
+  & a {
+    color: $primary-black;
+    font-size: $font-sm;
+    font-weight: 700;
+  }
+  &:hover {
+    color: #fff;
+    background-color: $dark-green;
+    border-color: $dark-green;
+  }
+}
+
+h1,h2,h3 {
+  font-family: 'Roboto', sans-serif;
+}
+
+p, a, li {
+  font-family: 'Open Sans', sans-serif;
+}
+
+
+/*=========================
+Footer
+==========================*/
+
+footer {
+  text-align: center;
+  color: #fefefe;
+  position: static;
+  bottom: 0;
+  margin-top: 15rem;
+  left: 0;
+  width: 100%;
+}

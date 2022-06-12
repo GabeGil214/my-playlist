@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { usePlaylist, createNewPlaylist } from '../reducers/playlistReducer.js';
+import { usePlaylist, createNewPlaylist } from '@app/contexts/playlistContext';
 import Col from "react-bootstrap/Col"
 
 function CreatePlaylist(){

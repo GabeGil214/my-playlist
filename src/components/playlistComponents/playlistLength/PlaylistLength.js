@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
-import { ParametersContext } from '../reducers/parametersReducer';
-import { PlaylistContext, getRecommendations } from '../reducers/playlistReducer';
+import { ParametersContext } from '@contexts/parametersContext';
+import { PlaylistContext, getRecommendations } from '@contexts/playlistContext';
 
 function PlaylistLength(){
   const [ playlist, playlistDispatch ] = useContext(PlaylistContext);

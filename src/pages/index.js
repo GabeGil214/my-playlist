@@ -4,9 +4,9 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import Container from "react-bootstrap/Container"
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
-import Layout from "../components/layout"
-import Login from "../components/Login"
-import SEO from "../components/seo"
+import Layout from "@components/gatsbyComponents/layout/Layout"
+import Login from "@components/login/Login"
+import SEO from "@components/gatsbyComponents/seo/Seo"
 
 const IndexPage = () => (
   <Layout>

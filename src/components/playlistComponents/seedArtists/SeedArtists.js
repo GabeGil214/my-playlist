@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
-import { ParametersContext } from '../reducers/parametersReducer';
-import { PlaylistContext } from '../reducers/playlistReducer';
+import { ParametersContext } from '../../../contexts/parametersContext';
+import { PlaylistContext } from '../../../contexts/playlistContext';
 import axios from 'axios';
 import Img from 'gatsby-image';
 
