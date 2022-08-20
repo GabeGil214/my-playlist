@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
-import { PlaylistContext } from '../reducers/playlistReducer.js';
-import { ParametersContext } from '../reducers/parametersReducer';
+import { PlaylistContext } from '@contexts/playlistContext';
+import { ParametersContext } from '@contexts/parametersContext';
 
 function Parameters(){
   const parameters = useContext(ParametersContext);

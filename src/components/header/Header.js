@@ -1,6 +1,6 @@
 import PropTypes from "prop-types"
 import React from "react"
-import UserProfile from './UserProfile';
+import UserProfile from '@components/userProfile/UserProfile';
 import Row from "react-bootstrap/Row"
 
 function Header({ siteTitle }){

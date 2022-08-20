@@ -8,9 +8,9 @@
 import React from "react"
 import PropTypes from "prop-types"
 
-import Header from "./header"
+import Header from "@app/components/header/Header"
 import "./layout.css"
-import { PlaylistProvider } from '../reducers/playlistReducer.js'
+import { PlaylistProvider } from '@contexts/playlistContext'
 
 const Layout = ({ children }) => {
 
